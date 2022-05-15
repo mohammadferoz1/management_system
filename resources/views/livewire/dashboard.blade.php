@@ -1,3 +1,4 @@
 <div>
-    {{-- Care about people's approval and you will be their prisoner. --}}
+    <x-page-title title="Dashboard">
+    </x-page-title>
 </div>

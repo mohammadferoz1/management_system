@@ -1,20 +1,21 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\TableHorizontal;
 
 use Illuminate\View\Component;
 
-class AppLayout extends Component
+class Headings extends Component
 {
+    public $title, $subTitle;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public $title = "";
-    public function __construct($title = "")
+    public function __construct($title, $subTitle)
     {
         $this->title = $title;
+        $this->subTitle = $subTitle;
     }
 
     /**
@@ -24,6 +25,6 @@ class AppLayout extends Component
      */
     public function render()
     {
-        return view('layouts.app');
+        return view('components.table-horizontal.headings');
     }
 }

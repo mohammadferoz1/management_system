@@ -16,11 +16,14 @@ class Site extends Migration
         Schema::create('sites', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('profit');
-            $table->integer('loss');
-            $table->integer('credit');
-            $table->integer('debit');
+            $table->integer('profit')->default(0);
+            $table->integer('loss')->default(0);
+            $table->integer('credit')->default(0);
+            $table->integer('debit')->default(0);
             $table->string('address');
+            $table->integer('phone');
+            $table->string('email')->nullable();
+            $table->text('description')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

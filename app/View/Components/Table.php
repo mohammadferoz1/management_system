@@ -4,17 +4,16 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class AppLayout extends Component
+class Table extends Component
 {
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public $title = "";
-    public function __construct($title = "")
+    public function __construct()
     {
-        $this->title = $title;
+        //
     }
 
     /**
@@ -24,6 +23,6 @@ class AppLayout extends Component
      */
     public function render()
     {
-        return view('layouts.app');
+        return view('components.table');
     }
 }

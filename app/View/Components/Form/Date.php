@@ -1,20 +1,19 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Form;
 
 use Illuminate\View\Component;
 
-class AppLayout extends Component
+class Date extends Component
 {
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public $title = "";
-    public function __construct($title = "")
+    public function __construct()
     {
-        $this->title = $title;
+        //
     }
 
     /**
@@ -24,6 +23,6 @@ class AppLayout extends Component
      */
     public function render()
     {
-        return view('layouts.app');
+        return view('components.form.date');
     }
 }
