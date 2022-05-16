@@ -104,6 +104,24 @@
                           </svg>
                           Site
                       </a>
+                      <a href="{{route("employee.index")}}" class="{{ (request()->is('admin/employee/index')) || (request()->is('admin/employee/create'))  ? 'bg-indigo-800' : 'hover:bg-indigo-600' }} text-white hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                        <!-- Heroicon name: outline/users -->
+                        <svg class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                        Employees
+                      </a>
+                      <form method="POST" action="{{ route('logout') }}" x-data>
+                        @csrf
+                        <a href="{{ route('logout') }}"
+                            @click.prevent="$root.submit();" class=" hover:bg-indigo-600 text-white hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            <!-- Heroicon name: outline/users -->
+                            <svg class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                            </svg>
+                            Logout
+                        </a>
+                      </form>
                   </div>
                   <div class="flex-shrink-0 flex border-t border-indigo-800 p-4">
                       <a href="#" class="flex-shrink-0 w-full group block">

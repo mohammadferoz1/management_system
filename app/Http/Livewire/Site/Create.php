@@ -22,7 +22,7 @@ class Create extends Component
         $validatedData = $this->validate([
             'name' => 'required',
             'description' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|digits:11,11',
             'email' => 'nullable',
             'description' => 'nullable',
         ]);

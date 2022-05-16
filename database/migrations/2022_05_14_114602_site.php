@@ -21,7 +21,7 @@ class Site extends Migration
             $table->integer('credit')->default(0);
             $table->integer('debit')->default(0);
             $table->string('address');
-            $table->integer('phone');
+            $table->bigInteger('phone');
             $table->string('email')->nullable();
             $table->text('description')->nullable();
             $table->unsignedBigInteger('user_id');
