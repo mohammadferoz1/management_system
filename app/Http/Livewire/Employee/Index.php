@@ -17,8 +17,12 @@ class Index extends Component
     {
         return view('livewire.employee.index');
     }
-    
+
     public function create(){
         return redirect()->route('employee.create');
+    }
+
+    public function edit($id){
+        return redirect()->route('employee.edit', ['id' => $id]);
     }
 }

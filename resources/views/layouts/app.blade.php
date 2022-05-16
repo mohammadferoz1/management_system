@@ -6,17 +6,17 @@
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1">
           <meta name="csrf-token" content="{{ csrf_token() }}">
-  
+
           <title>{{ config('app.name', 'Laravel') }}</title>
-  
+
           <!-- Fonts -->
           <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-  
+
           <!-- Styles -->
           <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-  
+
           @livewireStyles
-  
+
           <!-- Scripts -->
           <script src="{{ mix('js/app.js') }}" defer></script>
       </head>
@@ -35,7 +35,7 @@
                           </svg>
                       </button>
                       </div>
-          
+
                       <div class="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                       <div class="flex-shrink-0 flex items-center px-4">
                           <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-300-mark-white-text.svg" alt="Workflow">
@@ -72,13 +72,13 @@
                       </a>
                       </div>
                   </div>
-          
+
                   <div class="flex-shrink-0 w-14" aria-hidden="true">
                       <!-- Force sidebar to shrink to fit close icon -->
                   </div>
                   </div>
               </div>
-          
+
               <!-- Static sidebar for desktop -->
               <div class="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
                   <!-- Sidebar component, swap this element with another sidebar if you like -->
@@ -96,7 +96,7 @@
                           </svg>
                           Dashboard
                       </a>
-          
+
                       <a href="{{route("site.index")}}" class="{{ (request()->is('admin/site/index')) || (request()->is('admin/site/create'))  ? 'bg-indigo-800' : 'hover:bg-indigo-600' }} text-white hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
                           <!-- Heroicon name: outline/users -->
                           <svg class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -110,6 +110,20 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                         </svg>
                         Employees
+                      </a>
+                      <a href="{{route("task.index")}}" class="{{ (request()->is('admin/task/index')) || (request()->is('admin/task/create'))  ? 'bg-indigo-800' : 'hover:bg-indigo-600' }} text-white hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                        <!-- Heroicon name: outline/users -->
+                        <svg class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                        Tasks
+                      </a>
+                      <a href="{{route("bill.index")}}" class="{{ (request()->is('admin/bill/index')) || (request()->is('admin/bill/create'))  ? 'bg-indigo-800' : 'hover:bg-indigo-600' }} text-white hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                        <!-- Heroicon name: outline/users -->
+                        <svg class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                        Bills
                       </a>
                       <form method="POST" action="{{ route('logout') }}" x-data>
                         @csrf
@@ -159,8 +173,7 @@
               </div>
           </div>
           @stack('modals')
-  
+
           @livewireScripts
       </body>
   </html>
-  

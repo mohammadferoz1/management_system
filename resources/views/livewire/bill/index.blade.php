@@ -1,5 +1,5 @@
 <div>
-    <x-page-title title="Sites List">
+    <x-page-title title="Bills List">
     </x-page-title>
     <x-common.button type="button" wire:click="create()" class="">Create</x-common.button>
     @if (session()->has('message'))
@@ -10,25 +10,19 @@
         <x-slot name="head">
             <x-table.row>
                 <x-table.headings>
-                    Name
+                    Site Name
                 </x-table.headings>
                 <x-table.headings>
-                    Profit
+                    Products
                 </x-table.headings>
                 <x-table.headings>
-                    Loss
+                    Total Price
                 </x-table.headings>
                 <x-table.headings>
-                    Debit
+                    Status
                 </x-table.headings>
                 <x-table.headings>
-                    Credit
-                </x-table.headings>
-                <x-table.headings>
-                    Contact
-                </x-table.headings>
-                <x-table.headings>
-                    Address
+                    Created At
                 </x-table.headings>
                 <x-table.headings>
                     Actions
@@ -36,28 +30,22 @@
             </x-table.row>
         </x-slot>
         <x-slot name="body">
-            @foreach($this->sites as $site)
+            @foreach($this->bills as $bill)
                 <x-table.row>
                     <x-table.cell>
-                        {{$site->name}}
+                        {{$bill->site->name}}
                     </x-table.cell>
                     <x-table.cell>
-                        {{$site->profit}}
+                        {{$bill->products_detail}}
                     </x-table.cell>
                     <x-table.cell>
-                        {{$site->loss}}
+                        {{$bill->total_price}}
                     </x-table.cell>
                     <x-table.cell>
-                        {{$site->debit}}
+                        {{$bill->status}}
                     </x-table.cell>
                     <x-table.cell>
-                        {{$site->credit}}
-                    </x-table.cell>
-                    <x-table.cell>
-                        {{$site->phone}}
-                    </x-table.cell>
-                    <x-table.cell>
-                        {{$site->address}}
+                        {{$bill->created_at}}
                     </x-table.cell>
                     <x-table.cell>
                         <button wire:click="edit({{$site->id}})">

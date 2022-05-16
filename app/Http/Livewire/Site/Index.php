@@ -16,7 +16,10 @@ class Index extends Component
         return view('livewire.site.index');
     }
     public function create(){
-        
+
         return redirect()->route('site.create');
+    }
+    public function edit($id){
+        return redirect()->route('site.edit', $id);
     }
 }

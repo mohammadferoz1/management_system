@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Bill extends Model
 {
     public $table = 'bills';
-    protected $fillable = ['status', 'product_detail', 'total_price', 'site_id'];
+    protected $fillable = ['status', 'product_detail', 'total_price', 'site_id', 'remaining_amount'];
     public function sites()
     {
         return $this->belongsTo(Site::class, 'site_id');

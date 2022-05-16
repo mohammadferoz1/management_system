@@ -17,7 +17,8 @@ class Bill extends Migration
             $table->id();
             $table->enum('status', ['paid', 'unpaid'])->default('unpaid');
             $table->string('product_detail');
-            $table->string('total_price');
+            $table->integer('total_price');
+            $table->integer('remaining_amount');
             $table->unsignedBigInteger('site_id');
             $table->foreign('site_id')->references('id')->on('sites');
             $table->timestamps();
