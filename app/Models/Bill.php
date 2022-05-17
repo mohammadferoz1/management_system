@@ -9,7 +9,7 @@ class Bill extends Model
 {
     public $table = 'bills';
     protected $fillable = ['status', 'product_detail', 'total_price', 'site_id', 'remaining_amount'];
-    public function sites()
+    public function site()
     {
         return $this->belongsTo(Site::class, 'site_id');
     }

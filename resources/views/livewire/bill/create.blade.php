@@ -26,20 +26,20 @@
 
                 <x-form.group name="group">
 
-                    @for($i = 1; $i <= $optionCount; $i++)
-                    @if ($i == 1)
+                    @for($i = 0; $i < $optionCount; $i++)
+                    @if ($i == 0)
                         <x-form.label> Products </x-form.label>
                     @endif
-                        <x-form.input type="text" class="mt-4" wire:model="product.{{$i}}" placeholder="Products Name" required>  </x-form.input>
+                        <x-form.input type="text" class="mt-4" wire:model="products.{{$i}}" placeholder="Products Name" required>  </x-form.input>
                     @endfor
                 </x-form.group>
 
                 <x-form.group name="group">
-                    @for($i = 1; $i <= $optionCount; $i++)
-                    @if ($i == 1)
+                    @for($i = 0; $i < $optionCount; $i++)
+                    @if ($i == 0)
                         <x-form.label> Price </x-form.label>
                     @endif
-                        <x-form.input type="number" class="mt-4" wire:model="price.{{$i}}" placeholder="Product Price" required>  </x-form.input>
+                        <x-form.input type="number" class="mt-4" wire:model="prices.{{$i}}" placeholder="Product Price" required>  </x-form.input>
                     @endfor
                 </x-form.group>
             </x-slot>

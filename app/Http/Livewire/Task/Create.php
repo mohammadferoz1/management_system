@@ -12,6 +12,9 @@ class Create extends Component
     public $sites;
     public $name;
     public $site_id;
+    public $start_at;
+    public $end_at;
+    public $num_of_workers;
 
     public function mount(){
         $this->sites = Site::all();
@@ -24,10 +27,16 @@ class Create extends Component
         $validatedData = $this->validate([
             'name' => 'required',
             'site_id' => 'required',
+            'start_at' => 'required',
+            'end_at' => 'required',
+            'num_of_workers' => 'required',
         ]);
         Task::create([
             'name' => $this->name,
             'site_id' => $this->site_id,
+            'start_at' => $this->start_at,
+            'end_at' => $this->end_at,
+            'num_of_workers' => $this->num_of_workers,
             'created_by' => Auth::id()
         ]);
         session()->flash('message', 'Task successfully created.');

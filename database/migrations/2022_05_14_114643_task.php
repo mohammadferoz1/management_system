@@ -18,6 +18,10 @@ class Task extends Migration
             $table->string('name');
             $table->unsignedBigInteger('site_id');
             $table->unsignedBigInteger('created_by');
+            $table->date('start_at');
+            $table->date('end_at');
+            $table->integer('num_of_workers');
+            $table->enum('status', ['accpeted', 'not accepted'])->default('not accepted');
             $table->foreign('site_id')->references('id')->on('sites')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users');
             $table->timestamps();

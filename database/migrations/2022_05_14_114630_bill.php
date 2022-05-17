@@ -16,7 +16,7 @@ class Bill extends Migration
         Schema::create('bills', function (Blueprint $table) {
             $table->id();
             $table->enum('status', ['paid', 'unpaid'])->default('unpaid');
-            $table->string('product_detail');
+            $table->json('product_detail');
             $table->integer('total_price');
             $table->integer('remaining_amount');
             $table->unsignedBigInteger('site_id');

@@ -23,6 +23,18 @@
                         @endforeach
                     </x-form.select>
                 </x-form.group>
+                <x-form.group>
+                    <x-form.label>Start at</x-form.label>
+                    <x-form.input type="date" wire:model="start_at"></x-form.input>
+                </x-form.group>
+                <x-form.group>
+                    <x-form.label>End at</x-form.label>
+                    <x-form.input type="date" wire:model="end_at"></x-form.input>
+                </x-form.group>
+                <x-form.group>
+                    <x-form.label>Number Of Workers</x-form.label>
+                    <x-form.input type="number" wire:model="num_of_workers"></x-form.input>
+                </x-form.group>
 
 
             </x-slot>

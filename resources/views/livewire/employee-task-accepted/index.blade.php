@@ -1,11 +1,6 @@
 <div>
-    <x-page-title title="Tasks List">
+    <x-page-title title="Accepted Task">
     </x-page-title>
-    <x-common.button type="button" wire:click="create()" class="">Create</x-common.button>
-    @if (session()->has('message'))
-        <x-common.alert message="{{ session('message') }}">
-        </x-common.alert>
-    @endif
     <x-table>
         <x-slot name="head">
             <x-table.row>
@@ -36,38 +31,42 @@
             </x-table.row>
         </x-slot>
         <x-slot name="body">
-            @foreach($this->tasks as $task)
+            @foreach($this->employee_tasks as $employee_task)
                 <x-table.row>
                     <x-table.cell>
-                        {{$task->name}}
+                        {{$employee_task->name}}
                     </x-table.cell>
                     <x-table.cell>
-                        {{$task->site->name}}
+                        {{$employee_task->site->name}}
                     </x-table.cell>
                     <x-table.cell>
-                        {{$task->start_at}}
+                        {{$employee_task->start_at}}
                     </x-table.cell>
                     <x-table.cell>
-                        {{$task->end_at}}
+                        {{$employee_task->end_at}}
                     </x-table.cell>
                     <x-table.cell>
-                        {{$task->num_of_workers}}
+                        {{$employee_task->num_of_workers}}
                     </x-table.cell>
                     <x-table.cell>
-                        {{$task->status}}
+                        {{$employee_task->status}}
                     </x-table.cell>
                     <x-table.cell>
-                        {{$task->created_at}}
+                        {{$employee_task->created_at}}
                     </x-table.cell>
                     <x-table.cell>
-                        <button wire:click="edit({{$task->id}})">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                            </svg>
+                        @if(App\Models\TaskEmployee::where('task_id', $employee_task->id)->where('user_id', Auth::user()->id)->first())
+                            Accpeted
+                        @else
+                        <button wire:click="taskUpdate({{$employee_task->id}})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                            Accpet
                         </button>
+                        @endif
+
                     </x-table.cell>
                 </x-table.row>
             @endforeach
         </x-slot>
     </x-table>
+
 </div>
