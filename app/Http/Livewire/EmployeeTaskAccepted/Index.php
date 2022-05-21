@@ -19,4 +19,11 @@ class Index extends Component
     {
         return view('livewire.employee-task-accepted.index');
     }
+    public function taskUpdate($id){
+        $task = Task::find($id);
+        $task->status = "completed";
+        $task->save();
+        session()->flash('message', 'Task has been marked completed.');
+        return redirect()->route('employee-task-accepted.index');
+    }
 }

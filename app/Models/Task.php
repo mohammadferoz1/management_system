@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Task extends Model
 {
     public $table = 'tasks';
-    protected $fillable = ['name', 'site_id', 'created_by','start_at', 'end_at', 'num_of_workers', 'status'];
+    protected $fillable = ['name', 'site_id', 'created_by','start_at', 'end_at', 'num_of_workers', 'status', 'employee_acceptance_status'];
     public function users()
     {
         return $this->belongsToMany(User::class);

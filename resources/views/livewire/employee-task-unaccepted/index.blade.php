@@ -56,10 +56,10 @@
                         </x-table.cell>
                         <x-table.cell>
                             @if(App\Models\TaskEmployee::where('task_id', $employee_task->id)->where('user_id', Auth::user()->id)->first())
-                                Accpeted
+                                Accepted
                             @else
                             <button wire:click="taskUpdate({{$employee_task->id}})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                                Accpet
+                                Accept
                             </button>
                             @endif
 

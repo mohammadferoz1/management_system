@@ -21,7 +21,8 @@ class Task extends Migration
             $table->date('start_at');
             $table->date('end_at');
             $table->integer('num_of_workers');
-            $table->enum('status', ['accpeted', 'not accepted'])->default('not accepted');
+            $table->enum('employee_acceptance_status', ['not accepted', 'partially accepted', 'accepted by all'])->default('not accepted');
+            $table->enum('status', ['pending', 'completed'])->default('pending');
             $table->foreign('site_id')->references('id')->on('sites')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users');
             $table->timestamps();

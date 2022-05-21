@@ -13,7 +13,10 @@ class Index extends Component
     public $employee_tasks;
     public function mount(){
         $user_id = Auth::id();
-        $this->employee_tasks = Task::whereStatus('not accepted')->orWhereStatus('pending')->where('num_of_workers', '>' , '')->whereDoesntHave('taskEmployees',function ($query) use ($user_id) {
+        $this->employee_tasks = Task::whereEmployeeAcceptanceStatus('not accepted')
+        ->orWhere('employee_acceptance_status', 'partially accepted')
+        ->whereStatus('pending')
+        ->whereDoesntHave('taskEmployees',function ($query) use ($user_id) {
             $query->where('user_id','=', $user_id);
         })->get();
     }
@@ -24,16 +27,22 @@ class Index extends Component
 
         ]);
         $task = Task::find($id);
-        if($task->taskEmployees->count() > 0)
+        if($task->taskEmployees->count() < $task->num_of_workers)
         {
-            $task->status = 'pending';
+            $task->employee_acceptance_status = 'partially accepted';
+            $task->save();
+        }
+        else
+        {
+            $task->employee_acceptance_status = 'accepted by all';
             $task->save();
         }
         $user_id = Auth::id();
         $this->employee_tasks = Task::whereStatus('not accepted')->whereDoesntHave('taskEmployees',function ($query) use ($user_id) {
             $query->where('user_id','=', $user_id);
         })->get();
-
+        session()->flash('message', 'Task has been accepted.');
+        return redirect()->route('employee-task-accepted.index');
 
     }
     public function render()

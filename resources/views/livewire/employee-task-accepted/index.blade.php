@@ -1,6 +1,10 @@
 <div>
     <x-page-title title="Accepted Task">
     </x-page-title>
+    @if (session()->has('message'))
+        <x-common.alert message="{{ session('message') }}">
+        </x-common.alert>
+    @endif
     <x-table>
         <x-slot name="head">
             <x-table.row>
@@ -55,12 +59,12 @@
                         {{$employee_task->created_at}}
                     </x-table.cell>
                     <x-table.cell>
-                        @if(App\Models\TaskEmployee::where('task_id', $employee_task->id)->where('user_id', Auth::user()->id)->first())
-                            Accpeted
+                        @if($employee_task->status == "pending")
+                            <button wire:click="taskUpdate({{$employee_task->id}})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                                complete
+                            </button>
                         @else
-                        <button wire:click="taskUpdate({{$employee_task->id}})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                            Accpet
-                        </button>
+
                         @endif
 
                     </x-table.cell>
