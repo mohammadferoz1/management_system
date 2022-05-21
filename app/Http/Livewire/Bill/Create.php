@@ -43,7 +43,7 @@ class Create extends Component
             'product_detail' => $product_detail,
             'total_price' => $total_price,
             'site_id' => $this->site_id,
-            'remaining_amount' => $total_price
+            'credit' => $total_price,
         ]);
         session()->flash('message', 'Bill successfully created.');
         return redirect()->route('bill.index');

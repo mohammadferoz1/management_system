@@ -19,4 +19,13 @@ class Index extends Component
 
         return redirect()->route('bill.create');
     }
+    public function edit($id){
+        return redirect()->route('bill.edit', ['id' => $id]);
+    }
+    public function makeLedger($id){
+        return redirect()->route('bill.makeLedger', ['id' => $id]);
+    }
+    public function listLedger($id){
+        return redirect()->route('bill.listLedger', ['id' => $id]);
+    }
 }
