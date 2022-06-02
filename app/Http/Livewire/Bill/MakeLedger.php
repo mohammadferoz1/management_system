@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Bill;
 use App\Models\PaymentLedger;
 use App\Models\Bill;
+use App\Models\Site;
 
 use Livewire\Component;
 
@@ -16,6 +17,7 @@ class MakeLedger extends Component
         $this->bill_id = $id;
         $this->payment = 0;
         $this->bill = Bill::find($id);
+        $this->route = url()->previous();
     }
     public function render()
     {
@@ -33,14 +35,20 @@ class MakeLedger extends Component
         $bill = Bill::find($this->bill_id);
         $bill->credit = ($bill->credit)-$this->payment;
         $bill->debit += $this->payment;
+        $site = Site::find($bill->site_id);
+        $site->credit -= $this->payment;
+        $site->debit += $this->payment;
+        $site->save();
         if($bill->credit == 0){
             $bill->status = 'paid';
         }
         $bill->save();
 
-        
+
+
+
         session()->flash('message', 'Bill Ledger Successfully created.');
-        return redirect()->route('bill.index');
-        
+        return redirect($this->route);
+
     }
 }

@@ -22,4 +22,7 @@ class Index extends Component
     public function edit($id){
         return redirect()->route('site.edit', $id);
     }
+    public function bills($id){
+        return redirect()->route('site.site-bill', $id);
+    }
 }

@@ -5,6 +5,7 @@ use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Site\Create as SiteCreate;
 use App\Http\Livewire\Site\Index as SiteIndex;
 use App\Http\Livewire\Site\Edit as SiteEdit;
+use App\Http\Livewire\Site\SiteBill as SiteBill;
 use App\Http\Livewire\Employee\Index as EmployeeIndex;
 use App\Http\Livewire\Employee\Create as EmployeeCreate;
 use App\Http\Livewire\Employee\Edit as EmployeeEdit;
@@ -17,6 +18,9 @@ use App\Http\Livewire\Bill\MakeLedger as BillLedgerCreate;
 use App\Http\Livewire\Bill\ListLedger as BillLedgerList;
 use App\Http\Livewire\EmployeeTaskUnaccepted\Index as UnacceptedIndex;
 use App\Http\Livewire\EmployeeTaskAccepted\Index as AcceptedIndex;
+use App\Http\Livewire\Product\Index as ProductIndex;
+use App\Http\Livewire\Product\Create as ProductCreate;
+use App\Http\Livewire\Product\Edit as ProductEdit;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +41,7 @@ Route::group(['middleware' => ['auth', 'admin']], function(){
         Route::get('/create', SiteCreate::class)->name('site.create');
         Route::get('/index', SiteIndex::class)->name('site.index');
         Route::get('/edit/{id}', SiteEdit::class)->name('site.edit');
+        Route::get('/site-bill/{id}', SiteBill::class)->name('site.site-bill');
     });
     Route::group(['prefix'=>'admin/employee'], function(){\
         Route::get('/index', EmployeeIndex::class)->name('employee.index');
@@ -54,6 +59,11 @@ Route::group(['middleware' => ['auth', 'admin']], function(){
         Route::get('/make-ledger/{id}', BillLedgerCreate::class)->name('bill.makeLedger');
         Route::get('/list-ledger/{id}', BillLedgerList::class)->name('bill.listLedger');
         // Route::get('/edit/{id}', TaskEdit::class)->name('task.edit');
+    });
+    Route::group(['prefix'=>'admin/product'], function(){\
+        Route::get('/index', ProductIndex::class)->name('product.index');
+        Route::get('/create', ProductCreate::class)->name('product.create');
+        Route::get('/edit/{id}', ProductEdit::class)->name('product.edit');
     });
 });
 Route::group(['middleware' => ['auth', 'employee']], function(){
@@ -75,5 +85,6 @@ Route::middleware([
     // Route::get('/dashboard', function () {
     //     return view('dashboard');
     // })->name('dashboard');
+
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
 });

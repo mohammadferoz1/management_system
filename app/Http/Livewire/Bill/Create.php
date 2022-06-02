@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Bill;
 use App\Models\Site;
 use Livewire\Component;
 use App\Models\Bill;
+use PDF;
 
 class Create extends Component
 {
@@ -45,6 +46,9 @@ class Create extends Component
             'site_id' => $this->site_id,
             'credit' => $total_price,
         ]);
+        $site = Site::find($this->site_id);
+        $site->credit += $total_price;
+        $site->save();
         session()->flash('message', 'Bill successfully created.');
         return redirect()->route('bill.index');
     }
