@@ -59,6 +59,7 @@
                             <x-common.button type="button" wire:click="makeLedger({{$bill->id}})" class="">Debit</x-common.button>
                         @endif
                         <x-common.button type="button" wire:click="listLedger({{$bill->id}})" class="">View</x-common.button>
+                        <a href="{{$bill->pdf_link}}" target="_blank" class="inline-flex items-center px-5 py-2 tracking-wider border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">PDF</a>
                     </x-table.cell>
                 </x-table.row>
             @endforeach

@@ -21,6 +21,7 @@ use App\Http\Livewire\EmployeeTaskAccepted\Index as AcceptedIndex;
 use App\Http\Livewire\Product\Index as ProductIndex;
 use App\Http\Livewire\Product\Create as ProductCreate;
 use App\Http\Livewire\Product\Edit as ProductEdit;
+use App\Http\Livewire\Chat\Index as ChatIndex;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,7 +66,9 @@ Route::group(['middleware' => ['auth', 'admin']], function(){
         Route::get('/create', ProductCreate::class)->name('product.create');
         Route::get('/edit/{id}', ProductEdit::class)->name('product.edit');
     });
+    
 });
+
 Route::group(['middleware' => ['auth', 'employee']], function(){
     Route::group(['prefix'=>'employee/employee-task-unaccepted'], function(){\
         Route::get('/index', UnacceptedIndex::class)->name('employee-task-unaccepted.index');
@@ -74,6 +77,11 @@ Route::group(['middleware' => ['auth', 'employee']], function(){
     Route::group(['prefix'=>'employee/employee-task-accepted'], function(){\
         Route::get('/index', AcceptedIndex::class)->name('employee-task-accepted.index');
         // Route::get('/edit/{id}', TaskEdit::class)->name('task.edit');
+    });
+});
+Route::group(['middleware' => ['auth']], function(){    
+    Route::group(['prefix'=>'chat'], function(){
+        Route::get('/index/{id}', ChatIndex::class)->name('chat.index');
     });
 });
 

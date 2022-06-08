@@ -21,6 +21,7 @@ class Bill extends Migration
             $table->integer('credit')->default(0);
             $table->integer('debit')->default(0);
             $table->unsignedBigInteger('site_id');
+            $table->text('pdf_link');
             $table->foreign('site_id')->references('id')->on('sites');
             $table->timestamps();
         });
