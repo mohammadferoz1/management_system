@@ -21,6 +21,11 @@ use App\Http\Livewire\EmployeeTaskAccepted\Index as AcceptedIndex;
 use App\Http\Livewire\Product\Index as ProductIndex;
 use App\Http\Livewire\Product\Create as ProductCreate;
 use App\Http\Livewire\Product\Edit as ProductEdit;
+use App\Http\Livewire\ContractedSites\Index as ContractedSiteIndex;
+use App\Http\Livewire\ContractedSites\Create as ContractedSiteCreate;
+use App\Http\Livewire\ContractedSites\Edit as ContractedSiteEdit;
+use App\Http\Livewire\ContractedSites\View as ContractedSiteView;
+use App\Http\Livewire\ContractedSites\Contractedsitebill as ContractedSiteBill;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +47,13 @@ Route::group(['middleware' => ['auth', 'admin']], function(){
         Route::get('/index', SiteIndex::class)->name('site.index');
         Route::get('/edit/{id}', SiteEdit::class)->name('site.edit');
         Route::get('/site-bill/{id}', SiteBill::class)->name('site.site-bill');
+    });
+    Route::group(['prefix'=>'admin/contracted_site'], function(){
+        Route::get('/create', ContractedSiteCreate::class)->name('contracted_site.create');
+        Route::get('/index', ContractedSiteIndex::class)->name('contracted_site.index');
+        Route::get('/edit/{id}', ContractedSiteEdit::class)->name('contracted_site.edit');
+        Route::get('/view/{id}', ContractedSiteView::class)->name('contracted_site.view');
+        Route::get('/contracted-site-bill/{id}', ContractedSiteBill::class)->name('contracted_site.site-bill');
     });
     Route::group(['prefix'=>'admin/employee'], function(){\
         Route::get('/index', EmployeeIndex::class)->name('employee.index');

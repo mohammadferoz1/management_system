@@ -12,6 +12,14 @@
             <x-slot name="body">
                 <x-form.group>
                     <x-form.label>Select Site</x-form.label>
+                    <x-form.select name="site_id" wire:model="siteSelect" wire:change="selectedOption">
+                        <option value="null">Please Select</option>
+                        <option value="contracted">Contracted Site</option>
+                        <option value="non_contracted">Non Contracted Site</option>
+                    </x-form.select>
+                </x-form.group>
+                <x-form.group>
+                    <x-form.label>Select Site</x-form.label>
                     <x-form.select name="site_id" wire:model="site_id">
                         <option value="null">Please Select</option>
                         @foreach ($sites as $site)
@@ -19,28 +27,15 @@
                         @endforeach
                     </x-form.select>
                 </x-form.group>
-                <x-form.group name="group">
-                    <x-form.label> Select Product Count` </x-form.label>
-                    <x-form.input type="number" wire:model="optionCount">  </x-form.input>
-                </x-form.group>
 
                 <x-form.group name="group">
-
-                    @for($i = 0; $i < $optionCount; $i++)
-                    @if ($i == 0)
                         <x-form.label> Products </x-form.label>
-                    @endif
-                        <x-form.input type="text" class="mt-4" wire:model="products.{{$i}}" placeholder="Products Name" required>  </x-form.input>
-                    @endfor
+                        <x-form.input type="text" class="mt-4" wire:model="products" placeholder="Products Name" required>  </x-form.input>
                 </x-form.group>
 
                 <x-form.group name="group">
-                    @for($i = 0; $i < $optionCount; $i++)
-                    @if ($i == 0)
                         <x-form.label> Price </x-form.label>
-                    @endif
-                        <x-form.input type="number" class="mt-4" wire:model="prices.{{$i}}" placeholder="Product Price" required>  </x-form.input>
-                    @endfor
+                        <x-form.input type="number" class="mt-4" wire:model="prices" placeholder="Product Price" required>  </x-form.input>
                 </x-form.group>
             </x-slot>
         </x-form.main>

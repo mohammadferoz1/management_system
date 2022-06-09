@@ -3,23 +3,31 @@
 namespace App\Http\Livewire\Bill;
 
 use App\Models\Site;
+use App\Models\ContractedSites;
 use Livewire\Component;
 use App\Models\Bill;
 use PDF;
 
 class Create extends Component
 {
-    public $sites;
+    public $sites = [];
     public $products= [];
     public $prices = [];
     public $site_id;
+    public $siteSelect;
 
     public function mount(){
-        $this->sites = Site::all();
         $this->products = [];
         $this->prices = [];
-        $this->optionCount = 1;
 
+    }
+    public function selectedOption(){
+        if($this->siteSelect == 'non_contracted'){
+            $this->sites = Site::all();
+        }
+        else{
+            $this->sites = ContractedSites::all();
+        }
     }
     public function render()
     {
