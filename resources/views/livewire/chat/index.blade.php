@@ -1,4 +1,5 @@
-<div>
+<div wire:poll.keep-alive>
+  <span style="display:none">{{ $this->getMessages = App\Models\Chat::whereEmployeeId($this->employee_id)->get(); }}</span>
      <div class="mt-4">
         <div class="bg-white shadow overflow-hidden sm:rounded-lg p-4">
             <div class="flow-root bg-gray-50 p-5">
