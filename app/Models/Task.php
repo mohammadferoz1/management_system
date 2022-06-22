@@ -18,7 +18,7 @@ class Task extends Model
         return $this->belongsTo(Site::class, 'site_id');
     }
     public function taskEmployees(){
-        return $this->hasMany(TaskEmployee::class);
+        return $this->hasMany(TaskEmployee::class, 'task_id');
     }
     use HasFactory;
 }

@@ -12,6 +12,7 @@ use App\Http\Livewire\Employee\Edit as EmployeeEdit;
 use App\Http\Livewire\Task\Index as TaskIndex;
 use App\Http\Livewire\Task\Create as TaskCreate;
 use App\Http\Livewire\Task\Edit as TaskEdit;
+use App\Http\Livewire\Task\View as TaskView;
 use App\Http\Livewire\Bill\Index as BillIndex;
 use App\Http\Livewire\Bill\Create as BillCreate;
 use App\Http\Livewire\Bill\MakeLedger as BillLedgerCreate;
@@ -26,6 +27,13 @@ use App\Http\Livewire\ContractedSites\Create as ContractedSiteCreate;
 use App\Http\Livewire\ContractedSites\Edit as ContractedSiteEdit;
 use App\Http\Livewire\ContractedSites\View as ContractedSiteView;
 use App\Http\Livewire\ContractedSites\Contractedsitebill as ContractedSiteBill;
+use App\Http\Livewire\Chat\Index as ChatIndex;
+use App\Http\Livewire\Employeeexpense\Index as EmployeeExpenseIndex;
+use App\Http\Livewire\Employeeexpense\Create as EmployeeExpenseCreate;
+use App\Http\Livewire\Employeeexpense\Edit as EmployeeExpenseEdit;
+use App\Http\Livewire\HomeExpense\Index as HomeExpenseIndex;
+use App\Http\Livewire\HomeExpense\Create as HomeExpenseCreate;
+use App\Http\Livewire\HomeExpense\Edit as HomeExpenseEdit;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +72,7 @@ Route::group(['middleware' => ['auth', 'admin']], function(){
         Route::get('/index', TaskIndex::class)->name('task.index');
         Route::get('/create', TaskCreate::class)->name('task.create');
         Route::get('/edit/{id}', TaskEdit::class)->name('task.edit');
+        Route::get('/view/{id}', TaskView::class)->name('task.view');
     });
     Route::group(['prefix'=>'admin/bill'], function(){\
         Route::get('/index', BillIndex::class)->name('bill.index');
@@ -77,7 +86,19 @@ Route::group(['middleware' => ['auth', 'admin']], function(){
         Route::get('/create', ProductCreate::class)->name('product.create');
         Route::get('/edit/{id}', ProductEdit::class)->name('product.edit');
     });
+    Route::group(['prefix'=>'admin/home-expense'], function(){\
+        Route::get('/index', HomeExpenseIndex::class)->name('home-expense.index');
+        Route::get('/create', HomeExpenseCreate::class)->name('home-expense.create');
+        Route::get('/edit/{id}', HomeExpenseEdit::class)->name('home-expense.edit');
+    });
+    Route::group(['prefix'=>'admin/employee-expense'], function(){\
+        Route::get('/index', EmployeeExpenseIndex::class)->name('employees-expense.index');
+        Route::get('/create', EmployeeExpenseCreate::class)->name('employees-expense.create');
+        Route::get('/edit/{id}', EmployeeExpenseEdit::class)->name('employee-expense.edit');
+    });
+
 });
+
 Route::group(['middleware' => ['auth', 'employee']], function(){
     Route::group(['prefix'=>'employee/employee-task-unaccepted'], function(){\
         Route::get('/index', UnacceptedIndex::class)->name('employee-task-unaccepted.index');
@@ -86,6 +107,11 @@ Route::group(['middleware' => ['auth', 'employee']], function(){
     Route::group(['prefix'=>'employee/employee-task-accepted'], function(){\
         Route::get('/index', AcceptedIndex::class)->name('employee-task-accepted.index');
         // Route::get('/edit/{id}', TaskEdit::class)->name('task.edit');
+    });
+});
+Route::group(['middleware' => ['auth']], function(){
+    Route::group(['prefix'=>'chat'], function(){
+        Route::get('/index/{id}', ChatIndex::class)->name('chat.index');
     });
 });
 

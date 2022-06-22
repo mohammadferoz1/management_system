@@ -18,6 +18,9 @@ class Index extends Component
     public function edit($id){
         return redirect()->route('task.edit', ['id' => $id]);
     }
+    public function view($id){
+        return redirect()->route('task.view', ['id' => $id]);
+    }
     public function render()
     {
         return view('livewire.task.index');

@@ -105,6 +105,13 @@
                             </svg>
                             Site
                         </a>
+                        <a href="{{route("contracted_site.index")}}" class="{{ (request()->is('admin/contracted_site/*'))  ? 'bg-indigo-800' : 'hover:bg-indigo-600' }} text-white hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            <!-- Heroicon name: outline/users -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                            Contracted Sites
+                        </a>
                         <a href="{{route("employee.index")}}" class="{{ (request()->is('admin/employee/index')) || (request()->is('admin/employee/create'))  ? 'bg-indigo-800' : 'hover:bg-indigo-600' }} text-white hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
                             <!-- Heroicon name: outline/users -->
                             <svg class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -119,6 +126,20 @@
                             </svg>
                             Tasks
                         </a>
+                        <a href="{{route("product.index")}}" class="{{ (request()->is('admin/product/index')) || (request()->is('admin/product/create'))  ? 'bg-indigo-800' : 'hover:bg-indigo-600' }} text-white hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            <!-- Heroicon name: outline/users -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                            Products
+                        </a>
+                        <a href="{{route("home-expense.index")}}" class="{{ (request()->is('admin/home-expense/index')) || (request()->is('admin/home-expense/create'))  ? 'bg-indigo-800' : 'hover:bg-indigo-600' }} text-white hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            <!-- Heroicon name: outline/users -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                            Home Expense
+                        </a>
                         <a href="{{route("bill.index")}}" class="{{ (request()->is('admin/bill/index')) || (request()->is('admin/bill/create'))  ? 'bg-indigo-800' : 'hover:bg-indigo-600' }} text-white hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
                             <!-- Heroicon name: outline/users -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -126,12 +147,12 @@
                             </svg>
                             Bills
                         </a>
-                        <a href="{{route("contracted_site.index")}}" class="{{ (request()->is('admin/contractedsites/index')) || (request()->is('admin/contractedsites/create'))  ? 'bg-indigo-800' : 'hover:bg-indigo-600' }} text-white hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                        <a href="{{route("employees-expense.index")}}" class="{{ (request()->is('admin/employee-expense/*'))  ? 'bg-indigo-800' : 'hover:bg-indigo-600' }} text-white hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
                             <!-- Heroicon name: outline/users -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
                             </svg>
-                            Contracted Sites
+                            Employee Expense
                         </a>
                       @else
                         <a href="{{route("employee-task-unaccepted.index")}}" class="{{ (request()->is('employee/employee-task-unaccepted/index')) ? 'bg-indigo-800' : 'hover:bg-indigo-600' }} text-white hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
@@ -147,6 +168,13 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                             </svg>
                             Accpeted Tasks
+                        </a>
+                        <a href="{{route("chat.index", Auth::id())}}" class="{{ (request()->is('chat/*'))  ? 'bg-indigo-800' : 'hover:bg-indigo-600' }} text-white hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            <!-- Heroicon name: outline/users -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                            Chat
                         </a>
                       @endif
 

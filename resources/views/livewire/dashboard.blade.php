@@ -1,34 +1,73 @@
 <div>
     <x-page-title title="Dashboard"></x-page-tile>
-        <div class="mb-4">
-            <dl class="mt-5 grid grid-cols-1 rounded-lg bg-white overflow-hidden shadow divide-y divide-gray-200 md:grid-cols-3 md:divide-y-0 md:divide-x">
-              <div class="px-4 py-5 sm:p-6">
-                <dt class="text-base font-normal text-gray-900">Paid Amount</dt>
-                <dd class="mt-1 flex justify-between items-baseline md:block lg:flex">
-                  <div class="flex items-baseline text-2xl font-semibold text-indigo-600">
-                    Rs. {{$paid_amount}}
-                  </div>
-                </dd>
+        <div>
+            <h3 class="text-lg leading-6 font-bold text-gray-900 text-center bg-indigo-300 pt-2 pb-2">Over All</h3>
+            <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+              <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                <dt class="text-sm font-medium text-gray-500 truncate">Home Expense</dt>
+                <dd class="mt-1 text-3xl font-semibold text-gray-900">Rs. {{$homeExpense}}</dd>
               </div>
 
-              <div class="px-4 py-5 sm:p-6">
-                <dt class="text-base font-normal text-gray-900">Unpaid Amount</dt>
-                <dd class="mt-1 flex justify-between items-baseline md:block lg:flex">
-                  <div class="flex items-baseline text-2xl font-semibold text-indigo-600">
-                    Rs. {{$unpaid_amount}}
-                  </div>
-                </dd>
+              <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                <dt class="text-sm font-medium text-gray-500 truncate">Employee Expense</dt>
+                <dd class="mt-1 text-3xl font-semibold text-gray-900">Rs. {{$employeeExpense}}</dd>
               </div>
 
-              <div class="px-4 py-5 sm:p-6">
-                <dt class="text-base font-normal text-gray-900">Zakat</dt>
-                <dd class="mt-1 flex justify-between items-baseline md:block lg:flex">
-                  <div class="flex items-baseline text-2xl font-semibold text-indigo-600">
-                    Rs. {{$zakat}}
-                  </div>
-                </dd>
+              <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                <dt class="text-sm font-medium text-gray-500 truncate">Total Expense</dt>
+                <dd class="mt-1 text-3xl font-semibold text-gray-900">Rs. {{$totalExpense}}</dd>
               </div>
             </dl>
+        </div>
+        <div class="mb-4">
+            <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+                <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt class="text-sm font-medium text-gray-500 truncate">Paid Amount</dt>
+                  <dd class="mt-1 text-3xl font-semibold text-gray-900">Rs. {{$paid_amount}}</dd>
+                </div>
+
+                <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt class="text-sm font-medium text-gray-500 truncate">Unpaid Amount</dt>
+                  <dd class="mt-1 text-3xl font-semibold text-gray-900">Rs. {{$unpaid_amount}}</dd>
+                </div>
+
+                <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt class="text-sm font-medium text-gray-500 truncate">Zakat</dt>
+                  <dd class="mt-1 text-3xl font-semibold text-gray-900">Rs. {{$zakat}}</dd>
+                </div>
+              </dl>
+        </div>
+        <div>
+            <h3 class="text-lg leading-6 font-bold text-gray-900 text-center bg-indigo-300 pt-2 pb-2">This Month</h3>
+            <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+              <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                <dt class="text-sm font-medium text-gray-500 truncate">Home Expense</dt>
+                <dd class="mt-1 text-3xl font-semibold text-gray-900">Rs. {{$mHomeExpense}}</dd>
+              </div>
+
+              <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                <dt class="text-sm font-medium text-gray-500 truncate">Employee Expense</dt>
+                <dd class="mt-1 text-3xl font-semibold text-gray-900">Rs. {{$mEmployeeExpense}}</dd>
+              </div>
+
+              <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                <dt class="text-sm font-medium text-gray-500 truncate">Total Expense</dt>
+                <dd class="mt-1 text-3xl font-semibold text-gray-900">Rs. {{$mTotalExpense}}</dd>
+              </div>
+            </dl>
+        </div>
+        <div class="mb-4">
+            <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+                <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt class="text-sm font-medium text-gray-500 truncate">Paid Amount</dt>
+                  <dd class="mt-1 text-3xl font-semibold text-gray-900">Rs. {{$mPaid_amount}}</dd>
+                </div>
+
+                <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt class="text-sm font-medium text-gray-500 truncate">Unpaid Amount</dt>
+                  <dd class="mt-1 text-3xl font-semibold text-gray-900">Rs. {{$mUnpaid_amount}}</dd>
+                </div>
+              </dl>
         </div>
         <x-page-title title="Black List Sites"></x-page-tile>
         <x-table>
