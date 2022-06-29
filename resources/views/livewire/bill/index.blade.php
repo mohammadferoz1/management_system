@@ -36,7 +36,11 @@
             @foreach($this->bills as $bill)
                 <x-table.row>
                     <x-table.cell>
-                        {{$bill->site->name}}
+                        @if($bill->site_type == 'non_contracted')
+                            {{$bill->site->name}}
+                        @else
+                            {{$bill->contractedsite->name}}
+                        @endif
                     </x-table.cell>
                     <x-table.cell>
                         {{$bill->total_price}}

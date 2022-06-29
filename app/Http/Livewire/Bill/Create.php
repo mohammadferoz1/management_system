@@ -9,6 +9,7 @@ use App\Models\Bill;
 use App\Models\Product;
 use PDF;
 use Storage;
+use Auth;
 use Carbon\Carbon;
 
 class Create extends Component
@@ -64,6 +65,8 @@ class Create extends Component
         $path = '/pdfBills/bill('.now()->timestamp.').pdf';
         $bill = Bill::create([
             'product_detail' => $product_detail_json,
+            'site_type' => $this->siteSelect,
+            'user_id' => Auth::user()->id,
             'total_price' => $total_price,
             'site_id' => $this->site_id,
             'credit' => $total_price,
@@ -74,8 +77,16 @@ class Create extends Component
         "generation_date" => $bill->created_at, "total_price" => $total_price, "bill_id" => $bill->id];
         $pdf = PDF::loadView('billPDF', $all_data)->setOptions(['defaultFont' => 'sans-serif']);
         Storage::put('public'.$path, $pdf->output());
+        if(Auth::user()->group == "admin")
+        {
+            session()->flash('message', 'Bill successfully created.');
+            return redirect()->route('bill.index');
+        }
+        else
+        {
+            session()->flash('message', 'Your bill request is successfull created.');
+            return redirect()->route('employee-task-unaccepted.index');
+        }
 
-        session()->flash('message', 'Bill successfully created.');
-        return redirect()->route('bill.index');
     }
 }
