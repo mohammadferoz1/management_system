@@ -19,10 +19,15 @@ class Index extends Component
         ->orWhere('debit', 'like', '%'.$this->search.'%')
         ->orWhere('site_type', 'like', '%'.$this->search.'%')
         ->orWhere('created_at', 'like', '%'.$this->search.'%')
-        ->orWhereHas('site', function ($query) {
-            $query->where('name', 'like', '%'.$this->search.'%');
-        })
-        ->orderBy('created_at', 'desc');
+        ->orWhere(function ($query) {
+            $query->where('site_type', 'non_contracted')->whereHas('site', function ($query) {
+                $query->where('name', 'like', '%'.$this->search.'%');
+            });
+        })->orWhere(function ($query) {
+            $query->where('site_type', 'contracted')->whereHas('contractedsite', function ($query) {
+                $query->where('name', 'like', '%'.$this->search.'%');
+            });
+        })->orderBy('created_at', 'desc');
 
         $bills = $bills->paginate(10);
         return view('livewire.bill.index',  ['bills' => $bills]);

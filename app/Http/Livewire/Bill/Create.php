@@ -11,7 +11,6 @@ use PDF;
 use Storage;
 use Auth;
 use Carbon\Carbon;
-use Auth;
 
 class Create extends Component
 {
