@@ -108,6 +108,11 @@ Route::group(['middleware' => ['auth', 'employee']], function(){
         Route::get('/index', AcceptedIndex::class)->name('employee-task-accepted.index');
         // Route::get('/edit/{id}', TaskEdit::class)->name('task.edit');
     });
+
+    Route::group(['prefix'=>'employee/BillRequest'], function(){\
+        Route::get('/create', BillCreate::class)->name('employeebill.create');
+        // Route::get('/edit/{id}', TaskEdit::class)->name('task.edit');
+    });
 });
 Route::group(['middleware' => ['auth']], function(){
     Route::group(['prefix'=>'chat'], function(){

@@ -23,6 +23,9 @@
         <x-slot name="head">
             <x-table.row>
                 <x-table.headings>
+                    Made By
+                </x-table.headings>
+                <x-table.headings>
                     Site Name
                 </x-table.headings>
                 <x-table.headings>
@@ -49,7 +52,14 @@
             @foreach($bills as $bill)
                 <x-table.row>
                     <x-table.cell>
-                        {{$bill->site->name}}
+                        {{$bill->user->name}}
+                    </x-table.cell>
+                    <x-table.cell>
+                        @if($bill->site_type == 'non_contracted')
+                            {{$bill->site->name}}
+                        @else
+                            {{$bill->contractedsite->name}}
+                        @endif
                     </x-table.cell>
                     <x-table.cell>
                         {{$bill->total_price}}

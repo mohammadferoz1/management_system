@@ -9,7 +9,7 @@ use carbon\Carbon;
 class Site extends Model
 {
     public $table = 'sites';
-    protected $fillable = ['name', 'profit', 'loss', 'debit', 'credit', 'address', 'phone', 'email', 'description', 'user_id'];
+    protected $fillable = ['name', 'profit', 'loss', 'debit', 'credit', 'address', 'blacklist','good', 'excellent', 'allowed', 'phone', 'email', 'description', 'user_id'];
     public function bills()
     {
         return $this->hasMany(Bill::class, 'site_id');

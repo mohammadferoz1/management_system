@@ -11,6 +11,7 @@
                     @error('end_at') <li>{{$message}} </li>@enderror
                     @error('contracted_amount') <li>{{$message}} </li>@enderror
                     @error('amount_taken') <li>{{$message}} </li>@enderror
+                    @error('recover') <li>{{$message}} </li>@enderror
                 </x-slot>
             @endif
             <x-slot name="body">
@@ -37,6 +38,10 @@
                 <x-form.group>
                     <x-form.label>Contracted Amount</x-form.label>
                     <x-form.input type="number" wire:model="contracted_amount"></x-form.input>
+                </x-form.group>
+                <x-form.group>
+                    <x-form.label>When to recover</x-form.label>
+                    <x-form.input type="number" wire:model="recover"></x-form.input>
                 </x-form.group>
                 <x-form.group>
                     <x-form.label> Email (optional)</x-form.label>

@@ -13,8 +13,15 @@ class Bill extends Model
     {
         return $this->belongsTo(Site::class, 'site_id');
     }
+    public function contractedsite()
+    {
+        return $this->belongsTo(ContractedSites::class, 'site_id');
+    }
     public function ledger(){
         return $this->hasMany(PaymentLedger::class, 'bill_id');
+    }
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
     }
     use HasFactory;
 }

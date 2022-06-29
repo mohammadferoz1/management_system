@@ -7,6 +7,10 @@
                     @error('name') <li>{{$message}} </li>@enderror
                     @error('phone') <li>{{$message}} </li>@enderror
                     @error('address') <li>{{$message}} </li>@enderror
+                    @error('blacklist') <li>{{$message}} </li>@enderror
+                    @error('allowed') <li>{{$message}} </li>@enderror
+                    @error('good') <li>{{$message}} </li>@enderror
+                    @error('excellent') <li>{{$message}} </li>@enderror
                 </x-slot>
             @endif
             <x-slot name="body">
@@ -17,6 +21,22 @@
                 <x-form.group>
                     <x-form.label> Contact*</x-form.label>
                     <x-form.input type="number" wire:model="phone"></x-form.input>
+                </x-form.group>
+                <x-form.group>
+                    <x-form.label> When to blacklist*</x-form.label>
+                    <x-form.input type="number" wire:model="blacklist"></x-form.input>
+                </x-form.group>
+                <x-form.group>
+                    <x-form.label> When to allowed*</x-form.label>
+                    <x-form.input type="number" wire:model="allowed"></x-form.input>
+                </x-form.group>
+                <x-form.group>
+                    <x-form.label> When to Good*</x-form.label>
+                    <x-form.input type="number" wire:model="good"></x-form.input>
+                </x-form.group>
+                <x-form.group>
+                    <x-form.label> When to Excellect*</x-form.label>
+                    <x-form.input type="number" wire:model="excellent"></x-form.input>
                 </x-form.group>
                 <x-form.group>
                     <x-form.label> Email (optional)</x-form.label>

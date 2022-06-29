@@ -52,7 +52,11 @@
                     @if ($i == 0)
                         <x-form.label> Price </x-form.label>
                     @endif
-                        <x-form.input type="number" class="mt-4" wire:model="prices.{{$i}}" placeholder="Product Price" required>  </x-form.input>
+                     @if(Auth::user()->group == "admin")
+                        <x-form.input type="number" class="mt-4"  wire:model="prices.{{$i}}" placeholder="Product Price" required >  </x-form.input>
+                     @else
+                        <input type="number" id="disabled-input" wire:model="prices.{{$i}}" class=" mt-4 block cursor-not-allowed w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" placeholder="Product Price"  disabled>
+                     @endif
                     @endfor
                 </x-form.group>
             </x-slot>
