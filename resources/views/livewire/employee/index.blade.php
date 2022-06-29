@@ -1,7 +1,20 @@
 <div>
     <x-page-title title="Employee List">
     </x-page-title>
-    <x-common.button type="button" wire:click="create()" class="">Create</x-common.button>
+    <div class="grid grid-cols-4 gap-2">
+        <div>
+            <x-common.button type="button" wire:click="create()" class="">Create</x-common.button>
+        </div>
+        <div>
+
+        </div>
+        <div>
+
+        </div>
+        <div>
+            <x-form.input type="text" type="search" wire:model="search"  placeholder="Search..."></x-form.input>
+        </div>
+    </div>
     @if (session()->has('message'))
         <x-common.alert message="{{ session('message') }}">
         </x-common.alert>
@@ -27,7 +40,7 @@
             </x-table.row>
         </x-slot>
         <x-slot name="body">
-            @foreach($this->employees as $employee)
+            @foreach($employees as $employee)
                 <x-table.row>
                     <x-table.cell>
                         {{$employee->name}}
@@ -57,4 +70,5 @@
             @endforeach
         </x-slot>
     </x-table>
+    {{$employees->links()}}
 </div>

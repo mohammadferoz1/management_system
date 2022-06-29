@@ -11,8 +11,8 @@
             @endif
             <x-slot name="body">
                 <x-form.group>
-                    <x-form.label>Select Site</x-form.label>
-                    <x-form.select name="siteSelect" wire:model="siteSelect" wire:change="selectedOption">
+                    <x-form.label>Select Site Type</x-form.label>
+                    <x-form.select name="site_id" wire:model="siteSelect" wire:change="selectedOption">
                         <option value="null">Please Select</option>
                         <option value="contracted">Contracted Site</option>
                         <option value="non_contracted">Non Contracted Site</option>

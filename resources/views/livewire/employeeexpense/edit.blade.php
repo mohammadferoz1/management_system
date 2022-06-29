@@ -24,7 +24,7 @@
                     <x-form.select name="type" wire:model="type">
                         <option value="null">Please Select</option>
                             <option value="salary" {{$Exptype == 'salary' ? 'selected' : ''}}>Salary</option>
-                            <option value="otherexpense" {{$Exptype == 'otherexpense' ? 'selected' : ''}}>Other Expense</option>
+                            <option value="other expense" {{$Exptype == 'other expense' ? 'selected' : ''}}>Other Expense</option>
                     </x-form.select>
                 </x-form.group>
                 <x-form.group>

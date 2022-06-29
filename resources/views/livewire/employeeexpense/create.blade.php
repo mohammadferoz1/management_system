@@ -24,7 +24,7 @@
                     <x-form.select name="type" wire:model="type">
                         <option value="null">Please Select</option>
                             <option value="salary">Salary</option>
-                            <option value="otherexpense">Other Expense</option>
+                            <option value="other expense">Other Expense</option>
                     </x-form.select>
                 </x-form.group>
                 <x-form.group>

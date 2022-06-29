@@ -6,13 +6,19 @@ use Livewire\Component;
 use App\Models\Product;
 class Index extends Component
 {
-    public $products;
-    public function mount(){
-        $this->products = Product::all();
-    }
+    public $search;
+    protected $queryString = [
+        'search'  => ['except' => ''],
+    ];
     public function render()
     {
-        return view('livewire.product.index');
+        $products = Product::where('name', 'like', '%'.$this->search.'%')
+        ->orWhere('price', 'like', '%'.$this->search.'%')
+        ->orWhere('created_at', 'like', '%'.$this->search.'%')
+        ->orderBy('created_at', 'desc');
+
+        $products = $products->paginate(10);
+        return view('livewire.product.index', ['products' => $products]);
     }
     public function create(){
 

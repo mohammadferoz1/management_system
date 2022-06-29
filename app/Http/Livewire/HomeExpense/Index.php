@@ -7,13 +7,20 @@ use App\Models\HomeExpense;
 
 class Index extends Component
 {
-    public $homeExpenses;
-    public function mount(){
-        $this->homeExpenses = HomeExpense::all();
-    }
+    public $search;
+    protected $queryString = [
+        'search'  => ['except' => ''],
+    ];
     public function render()
     {
-        return view('livewire.home-expense.index');
+        
+        $homeExpenses = HomeExpense::where('name', 'like', '%'.$this->search.'%')
+        ->orWhere('price', 'like', '%'.$this->search.'%')
+        ->orWhere('created_at', 'like', '%'.$this->search.'%')
+        ->orderBy('created_at', 'desc');
+
+        $homeExpenses = $homeExpenses->paginate(10);
+        return view('livewire.home-expense.index', ['homeExpenses' => $homeExpenses]);
     }
     public function create(){
 

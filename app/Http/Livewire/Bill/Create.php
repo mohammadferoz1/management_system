@@ -11,6 +11,7 @@ use PDF;
 use Storage;
 use Auth;
 use Carbon\Carbon;
+use Auth;
 
 class Create extends Component
 {
@@ -70,6 +71,7 @@ class Create extends Component
             'total_price' => $total_price,
             'site_id' => $this->site_id,
             'credit' => $total_price,
+            'user_id' => Auth::id(),
             'pdf_link' => '/storage'.$path
         ]);
         $all_data = [];
