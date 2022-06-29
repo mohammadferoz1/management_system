@@ -23,6 +23,7 @@ class ContractedSites extends Migration
             $table->string('address');
             $table->date('start_at');
             $table->date('end_at');
+            $table->bigInteger('recover');
             $table->bigInteger('phone');
             $table->string('email')->nullable();
             $table->text('description')->nullable();

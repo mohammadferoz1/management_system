@@ -57,10 +57,21 @@
                         {{$site->address}}
                     </x-table.cell>
                     <x-table.cell>
-                        @if($site->checkIfBlackList()[0] > 0 || $site->checkIfBlackList()[1] > 1)
+                        {{-- @if($site->checkIfBlackList()[0] > 0 || $site->checkIfBlackList()[1] > 1)
                         <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-white bg-black rounded-full">BlackList</span>
                         @else
                         <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-white bg-lime-500 rounded-full">Good</span>
+                        @endif --}}
+                        @if($site->credit < $site->excellent && $site->credit >= 0 )
+                            <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-black bg-green-400 rounded-full">Marvelous</span>
+                        @elseif ($site->credit >= $site->excellent && $site->credit < $site->good )
+                            <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-black bg-green-300 rounded-full">Excellent</span>
+                        @elseif ($site->credit >= $site->good && $site->credit < $site->allowed)
+                            <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-black bg-yellow-400 rounded-full">Good</span>
+                        @elseif ($site->credit >= $site->allowed && $site->credit < $site->blacklist)
+                            <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-black bg-orange-500 rounded-full">Allowed</span>
+                        @else
+                            <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-white bg-black rounded-full">Blacklist</span>
                         @endif
                     </x-table.cell>
                     <x-table.cell>

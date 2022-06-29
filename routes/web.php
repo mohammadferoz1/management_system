@@ -110,7 +110,7 @@ Route::group(['middleware' => ['auth', 'employee']], function(){
     });
 
     Route::group(['prefix'=>'employee/BillRequest'], function(){\
-        Route::get('/create', BillCreate::class)->name('bill.create');
+        Route::get('/create', BillCreate::class)->name('employeebill.create');
         // Route::get('/edit/{id}', TaskEdit::class)->name('task.edit');
     });
 });

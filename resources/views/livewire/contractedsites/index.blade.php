@@ -69,6 +69,11 @@
                         <x-common.button type="button" wire:click="bills({{$site->id}})" class="">View</x-common.button>
                     </x-table.cell>
                     <x-table.cell>
+                        @if($site->debit > $site->recover)
+                            <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-white bg-red-600 rounded-full">Recovery</span>
+                        @else
+                            <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-white bg-green-400 rounded-full">Good</span>
+                        @endif
                     </x-table.cell>
                     <x-table.cell>
                         <button wire:click="edit({{$site->id}})">

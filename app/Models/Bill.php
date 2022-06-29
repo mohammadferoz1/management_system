@@ -20,5 +20,8 @@ class Bill extends Model
     public function ledger(){
         return $this->hasMany(PaymentLedger::class, 'bill_id');
     }
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
     use HasFactory;
 }

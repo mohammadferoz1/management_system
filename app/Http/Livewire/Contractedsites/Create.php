@@ -16,6 +16,7 @@ class Create extends Component
     public $end_at;
     public $phone;
     public $email;
+    public $recover;
     public $description;
     public function render()
     {
@@ -32,12 +33,14 @@ class Create extends Component
             'contracted_amount' => 'required|integer',
             'email' => 'nullable',
             'description' => 'nullable',
+            'recover' => 'required',
         ]);
         ContractedSites::create([
             'name' => $this->name,
             'start_at' => $this->start_at,
             'end_at' => $this->end_at,
             'amount_taken' => $this->amount_taken,
+            'recover' => $this->recover,
             'contracted_amount' =>  $this->contracted_amount,
             'credit' => ($this->contracted_amount-$this->amount_taken),
             'phone' => $this->phone,

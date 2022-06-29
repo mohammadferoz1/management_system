@@ -22,6 +22,10 @@ class Site extends Migration
             $table->integer('debit')->default(0);
             $table->string('address');
             $table->bigInteger('phone');
+            $table->bigInteger('blacklist');
+            $table->bigInteger('allowed');
+            $table->bigInteger('good');
+            $table->bigInteger('excellent');
             $table->string('email')->nullable();
             $table->text('description')->nullable();
             $table->unsignedBigInteger('user_id');
