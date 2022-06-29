@@ -15,7 +15,7 @@
                 </x-form.group>
                 <x-form.group>
                     <x-form.label>Select Site</x-form.label>
-                    <x-form.select name="site_id" wire:model="site_id">
+                    <x-form.select class="mt-0" name="site_id" wire:model="site_id">
 
                         <option value="null">Please Select</option>
                         @foreach ($sites as $site)

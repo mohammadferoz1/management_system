@@ -7,10 +7,11 @@ use App\Models\Task;
 
 class Index extends Component
 {
-    public $tasks;
-    public function mount(){
-        $this->tasks = Task::all();
-    }
+    public $search;
+    protected $queryString = [
+        'search'  => ['except' => ''],
+    ];
+   
     public function create(){
 
         return redirect()->route('task.create');
@@ -23,6 +24,18 @@ class Index extends Component
     }
     public function render()
     {
-        return view('livewire.task.index');
+        $tasks = Task::where('name', 'like', '%'.$this->search.'%')
+        ->orWhere('num_of_workers', 'like', '%'.$this->search.'%')
+        ->orWhere('start_at', 'like', '%'.$this->search.'%')
+        ->orWhere('end_at', 'like', '%'.$this->search.'%')
+        ->orWhere('status', 'like', '%'.$this->search.'%')
+        ->orWhere('created_at', 'like', '%'.$this->search.'%')
+        ->orWhereHas('site', function ($query) {
+            $query->where('name', 'like', '%'.$this->search.'%');
+        })
+        ->orderBy('created_at', 'desc');
+
+        $tasks = $tasks->paginate(10);
+        return view('livewire.task.index', ['tasks' => $tasks]);
     }
 }

@@ -1,5 +1,5 @@
 <div>
-    <x-page-title title="Create Site"></x-page-tile>
+    <x-page-title title="Create Bill"></x-page-tile>
     <form wire:submit.prevent="store">
         <x-form.main>
             @if($errors != '[]')
@@ -11,7 +11,7 @@
             @endif
             <x-slot name="body">
                 <x-form.group>
-                    <x-form.label>Select Site</x-form.label>
+                    <x-form.label>Select Site Type</x-form.label>
                     <x-form.select name="site_id" wire:model="siteSelect" wire:change="selectedOption">
                         <option value="null">Please Select</option>
                         <option value="contracted">Contracted Site</option>

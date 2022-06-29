@@ -10,4 +10,8 @@ class EmployeeExpense extends Model
     public $table = 'employees_expense';
     protected $fillable = ['name', 'type', 'price', 'employee_id'];
     use HasFactory;
+    public function employee()
+    {
+        return $this->belongsTo(User::class, 'employee_id');
+    }
 }

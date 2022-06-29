@@ -7,13 +7,23 @@ use App\Models\Site;
 
 class Index extends Component
 {
-    public $sites;
-    public function mount(){
-        $this->sites = Site::all();
-    }
+    public $search;
+    protected $queryString = [
+        'search'  => ['except' => ''],
+    ];
+
     public function render()
     {
-        return view('livewire.site.index');
+        $sites = Site::where('name', 'like', '%'.$this->search.'%')
+        ->orWhere('email', 'like', '%'.$this->search.'%')
+        ->orWhere('address', 'like', '%'.$this->search.'%')
+        ->orWhere('debit', 'like', '%'.$this->search.'%')
+        ->orWhere('credit', 'like', '%'.$this->search.'%')
+        ->orWhere('phone', 'like', '%'.$this->search.'%')
+        ->orWhere('created_at', 'like', '%'.$this->search.'%')
+        ->orderBy('created_at', 'desc');
+        $sites = $sites->paginate(10);
+        return view('livewire.site.index', ['sites' => $sites]);
     }
     public function create(){
 
