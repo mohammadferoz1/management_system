@@ -29,6 +29,9 @@
                     Site Name
                 </x-table.headings>
                 <x-table.headings>
+                    Site Type
+                </x-table.headings>
+                <x-table.headings>
                     Total Price
                 </x-table.headings>
                 <x-table.headings>
@@ -60,6 +63,9 @@
                         @else
                             {{$bill->contractedsite->name}}
                         @endif
+                    </x-table.cell>
+                    <x-table.cell>
+                        {{$bill->site_type}}
                     </x-table.cell>
                     <x-table.cell>
                         {{$bill->total_price}}
