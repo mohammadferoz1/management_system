@@ -23,6 +23,9 @@
         <x-slot name="head">
             <x-table.row>
                 <x-table.headings>
+                    ID
+                </x-table.headings>
+                <x-table.headings>
                     Made By
                 </x-table.headings>
                 <x-table.headings>
@@ -55,6 +58,9 @@
             @foreach($bills as $bill)
                 <x-table.row>
                     <x-table.cell>
+                        {{$bill->id}}
+                    </x-table.cell>
+                    <x-table.cell>
                         {{$bill->user->name}}
                     </x-table.cell>
                     <x-table.cell>
@@ -83,7 +89,7 @@
                         {{$bill->created_at}}
                     </x-table.cell>
                     <x-table.cell>
-                        <x-common.button type="button" wire:click="edit({{$bill->id}})" class="">Edit</x-common.button>
+                        <!-- <x-common.button type="button" wire:click="edit({{$bill->id}})" class="">Edit</x-common.button> -->
                         @if($bill->credit != 0)
                             <x-common.button type="button" wire:click="makeLedger({{$bill->id}})" class="">Debit</x-common.button>
                         @endif

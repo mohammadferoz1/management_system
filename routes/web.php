@@ -17,6 +17,7 @@ use App\Http\Livewire\Bill\Index as BillIndex;
 use App\Http\Livewire\Bill\Create as BillCreate;
 use App\Http\Livewire\Bill\MakeLedger as BillLedgerCreate;
 use App\Http\Livewire\Bill\ListLedger as BillLedgerList;
+use App\Http\Livewire\Bill\BillById;
 use App\Http\Livewire\EmployeeTaskUnaccepted\Index as UnacceptedIndex;
 use App\Http\Livewire\EmployeeTaskAccepted\Index as AcceptedIndex;
 use App\Http\Livewire\Product\Index as ProductIndex;
@@ -79,6 +80,7 @@ Route::group(['middleware' => ['auth', 'admin']], function(){
         Route::get('/create', BillCreate::class)->name('bill.create');
         Route::get('/make-ledger/{id}', BillLedgerCreate::class)->name('bill.makeLedger');
         Route::get('/list-ledger/{id}', BillLedgerList::class)->name('bill.listLedger');
+        Route::get('/billByid', BillById::class)->name('bill.BillById');
         // Route::get('/edit/{id}', TaskEdit::class)->name('task.edit');
     });
     Route::group(['prefix'=>'admin/product'], function(){\

@@ -75,7 +75,7 @@ class Create extends Component
         ]);
         $all_data = [];
         $all_data = ["product_detail" => $product_detail, "site_name" => $site->name,
-        "generation_date" => $bill->created_at, "total_price" => $total_price, "bill_id" => $bill->id];
+        "generation_date" => $bill->created_at, "total_price" => $total_price, "bill_id" => $bill->id, "site" => $site];
         $pdf = PDF::loadView('billPDF', $all_data)->setOptions(['defaultFont' => 'sans-serif']);
         Storage::put('public'.$path, $pdf->output());
         if(Auth::user()->group == "admin")

@@ -16,65 +16,212 @@
     *{
       font-family: Arial, Helvetica, sans-serif;
     }
+    .row {
+      margin-left:-5px;
+      margin-right:-5px;
+    }
+      
+    .column {
+      float: left;
+      width: 50%;
+      padding: 5px;
+    }
+
+    /* Clearfix (clear floats) */
+    .row::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+    .dotted {border: 2px dotted black; border-style: none none dotted; color: black; background-color: black; }
   </style>
 </head>
 <body>
-    <table class="" width="100%"  cellpadding="10px">
-        <tr>
-            <th>
-                Bill ID
-            </th>
-            <td>
-                {{$bill_id}}
-            </td>
-            <th>
-                Generation Date
-            </th>
-            <td>
-              {{$generation_date}}
-            </td>
-        </tr>
-        <tr>
-            <th>
-                Site
-            </th>
-            <td>
-              {{$site_name}}
-            </td>
-            <th>
-              Total Price
-            </th>
-            <td>
-              {{$total_price}}
-            </td>
-        </tr>
-    </table>
-    <br><br><br>
-    <table class="" width="100%"  cellpadding="10px">
-        <thead>
-          <tr>
-              <th scope="col">Sr#</th>
-              <th scope="col">Product Name</th>
-              <th scope="col">Product Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          @foreach($product_detail as $key => $product)
+    <div class="row">
+      <div class="column">
+        <!-- Office Bill -->
+        <table class="" width="100%"  cellpadding="10px">
             <tr>
-                <td>{{++$key}}</td>
-                <td>{{$product["name"]}}</td>
-                <td>{{$product["price"]}}</td>
+              <th colspan="4">
+                  Office Slip
+              </th>
             </tr>
-          @endforeach
+            <tr>
+                <th>
+                    Bill ID
+                </th>
+                <td>
+                    {{$bill_id}}
+                </td>
+                <th>
+                    Generation Date
+                </th>
+                <td>
+                  {{$generation_date}}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Site
+                </th>
+                <td>
+                  {{$site_name}}
+                </td>
+                <th>
+                  Total Price
+                </th>
+                <td>
+                  {{$total_price}}
+                </td>
+            </tr>
+        </table>
+        <br><br><br>
+        <table class="" width="100%"  cellpadding="10px">
+            <thead>
+              <tr>
+                  <th scope="col">Sr#</th>
+                  <th scope="col">Product Name</th>
+                  <th scope="col">Product Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($product_detail as $key => $product)
+                <tr>
+                    <td>{{++$key}}</td>
+                    <td>{{$product["name"]}}</td>
+                    <td>{{$product["price"]}}</td>
+                </tr>
+              @endforeach
+              <tr>
+                <th colspan="2">
+                  Total Price
+                </th>
+                <td>
+                  {{$total_price}}
+                </td>
+              </tr>
+            </tbody>
+        </table>
+        <br><br><br>
+        <table class="" width="100%"  cellpadding="10px">
+            <tr>
+                <th>
+                    Total Credit
+                </th>
+                <td>
+                    {{$site->credit}}
+                </td>
+                <th>
+                  Status
+                </th>
+                <td>
+                    @if($site->credit < $site->excellent && $site->credit >= 0 )
+                        Marvelous
+                    @elseif ($site->credit >= $site->excellent && $site->credit < $site->good )
+                        Excellent
+                    @elseif ($site->credit >= $site->good && $site->credit < $site->allowed)
+                        Good
+                    @elseif ($site->credit >= $site->allowed && $site->credit < $site->blacklist)
+                        Allowed
+                    @else
+                        Blacklist
+                    @endif
+                </td>
+            </tr>
+        </table>
+      </div>
+      <div class="column">
+        <!-- Site Bill -->
+        <table class="" width="100%"  cellpadding="10px">
           <tr>
-            <th colspan="2">
-              Total Price
+            <th colspan="4">
+                Customer Slip
             </th>
-            <td>
-              {{$total_price}}
-            </td>
           </tr>
-        </tbody>
-      </table>
+          <tr>
+              <th>
+                  Bill ID
+              </th>
+              <td>
+                  {{$bill_id}}
+              </td>
+              <th>
+                  Generation Date
+              </th>
+              <td>
+                {{$generation_date}}
+              </td>
+          </tr>
+          <tr>
+              <th>
+                  Site
+              </th>
+              <td>
+                {{$site_name}}
+              </td>
+              <th>
+                Total Price
+              </th>
+              <td>
+                {{$total_price}}
+              </td>
+          </tr>
+        </table>
+        <br><br><br>
+        <table class="" width="100%"  cellpadding="10px">
+            <thead>
+              <tr>
+                  <th scope="col">Sr#</th>
+                  <th scope="col">Product Name</th>
+                  <th scope="col">Product Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($product_detail as $key => $product)
+                <tr>
+                    <td>{{++$key}}</td>
+                    <td>{{$product["name"]}}</td>
+                    <td>{{$product["price"]}}</td>
+                </tr>
+              @endforeach
+              <tr>
+                <th colspan="2">
+                  Total Price
+                </th>
+                <td>
+                  {{$total_price}}
+                </td>
+              </tr>
+            </tbody>
+        </table>
+        <br><br><br>
+        <table class="" width="100%"  cellpadding="10px">
+            <tr>
+                <th>
+                    Total Credit
+                </th>
+                <td>
+                    {{$site->credit}}
+                </td>
+                <th>
+                  Status
+                </th>
+                <td>
+                    @if($site->credit < $site->excellent && $site->credit >= 0 )
+                        Marvelous
+                    @elseif ($site->credit >= $site->excellent && $site->credit < $site->good )
+                        Excellent
+                    @elseif ($site->credit >= $site->good && $site->credit < $site->allowed)
+                        Good
+                    @elseif ($site->credit >= $site->allowed && $site->credit < $site->blacklist)
+                        Allowed
+                    @else
+                        Blacklist
+                    @endif
+                </td>
+            </tr>
+        </table>
+      </div>
+    </div>
 </body>
 </html>

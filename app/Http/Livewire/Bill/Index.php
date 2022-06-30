@@ -13,7 +13,8 @@ class Index extends Component
     ];
     public function render()
     {
-        $bills = Bill::where('total_price', 'like', '%'.$this->search.'%')
+        $bills = Bill::where('id', 'like', '%'.$this->search.'%')
+        ->orWhere('total_price', 'like', '%'.$this->search.'%')
         ->orWhere('status', 'like', '%'.$this->search.'%')
         ->orWhere('credit', 'like', '%'.$this->search.'%')
         ->orWhere('debit', 'like', '%'.$this->search.'%')
