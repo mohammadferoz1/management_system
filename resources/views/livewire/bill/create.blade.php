@@ -5,15 +5,16 @@
             @if($errors != '[]')
                 <x-slot name="errorMessages">
                     @error('site_id') <li>{{$message}} </li>@enderror
-                    @error('product_details') <li>{{$message}} </li>@enderror
-                    @error('product_price') <li>{{$message}} </li>@enderror
+                    @error('products') <li>{{$message}} </li>@enderror
+                    @error('prices') <li>{{$message}} </li>@enderror
+                    @error('siteSelect') <li>{{$message}} </li>@enderror
                 </x-slot>
             @endif
             <x-slot name="body">
                 <x-form.group>
                     <x-form.label>Select Site Type</x-form.label>
                     <x-form.select name="site_type" wire:model="siteSelect" wire:change="selectedOption">
-                        <option value="null">Please Select</option>
+                        <option value="">Please Select</option>
                         <option value="contracted">Contracted Site</option>
                         <option value="non_contracted">Non Contracted Site</option>
                     </x-form.select>
@@ -21,7 +22,7 @@
                 <x-form.group>
                     <x-form.label>Select Site</x-form.label>
                     <x-form.select name="site_id" wire:model="site_id">
-                        <option value="null">Please Select</option>
+                        <option value="">Please Select</option>
                         @foreach ($sites as $site)
                             <option value="{{$site->id}}">{{$site->name}}</option>
                         @endforeach
@@ -39,7 +40,7 @@
                         <x-form.label> Products </x-form.label>
                     @endif
                     <x-form.select name="product" wire:model="products.{{$i}}" wire:change="getPrice({{$i}})">
-                        <option value="null">Please Select</option>
+                        <option value="">Please Select</option>
                         @foreach ($getProducts as $product)
                             <option value="{{$product->id}}">{{$product->name}}</option>
                         @endforeach

@@ -27,10 +27,14 @@ class Create extends Component
         $validatedData = $this->validate([
             'name' => 'required',
             'site_id' => 'required',
-            'start_at' => 'required',
-            'end_at' => 'required',
+            'start_at' => 'required|date',
+            'end_at' => 'required|date|after:start_at',
             'num_of_workers' => 'required',
-        ]);
+        ],
+            ['site_id.required' => 'Please select site name',
+             'end_at.after' => 'End date should be after the start date'
+            ]
+        );
         Task::create([
             'name' => $this->name,
             'site_id' => $this->site_id,

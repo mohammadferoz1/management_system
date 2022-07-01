@@ -118,6 +118,7 @@
                     @endforeach
                 </x-slot>
             </x-table>
+            <div class="mb-2">{{$tasksMonthly->links()}}</div>
         <x-page-title title="Bills"></x-page-tile>
             <x-table>
                 <x-slot name="head">
@@ -171,6 +172,7 @@
                     </x-slot>
                 </x-slot>
             </x-table>
+            <div class="mb-2">{{$monthlyBills->links()}}</div>
         <h3 class="text-lg leading-6 font-bold text-white text-center bg-black pt-2 pb-2 mb-3">Today</h3>
         <x-page-title title="Tasks"></x-page-tile>
             <x-table>
@@ -221,6 +223,7 @@
                     @endforeach
                 </x-slot>
             </x-table>
+            <div class="mb-2">{{$tasksToday->links()}}</div>
         <x-page-title title="Bills"></x-page-tile>
             <x-table>
                 <x-slot name="head">
@@ -274,6 +277,7 @@
                     </x-slot>
                 </x-slot>
             </x-table>
+            <div class="mb-2">{{$todayBills->links()}}</div>
 
         <x-page-title title="Black List Sites"></x-page-tile>
         <x-table>

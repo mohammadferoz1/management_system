@@ -106,7 +106,7 @@
         <table class="" width="100%"  cellpadding="10px">
             <tr>
                 <th>
-                    Total Credit
+                    Total Due Amount
                 </th>
                 <td>
                     {{$site->credit}}
@@ -198,7 +198,7 @@
         <table class="" width="100%"  cellpadding="10px">
             <tr>
                 <th>
-                    Total Credit
+                    Total Due Amount
                 </th>
                 <td>
                     {{$site->credit}}

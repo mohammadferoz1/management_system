@@ -25,7 +25,6 @@ class Dashboard extends Component
     public $mTotalExpense;
     public $mPaid_amount;
     public $mUnpaid_amount;
-    public $tasksToday;
 
     public function mount(){
         $this->paid_amount = Bill::where('debit', '>' , '0')->sum('debit');
@@ -40,10 +39,7 @@ class Dashboard extends Component
         $this->mTotalExpense = $this->mHomeExpense + $this->mEmployeeExpense;
         $this->mPaid_amount = Bill::where('debit', '>' , '0')->whereMonth('created_at', Carbon::now()->month)->sum('debit');
         $this->mUnpaid_amount = Bill::where('credit', '>' , '0')->whereMonth('created_at', Carbon::now()->month)->sum('credit');
-        $this->tasksToday = Task::whereDate('created_at', Carbon::today())->get();
-        $this->todayBills = Bill::whereDate('created_at', Carbon::today())->get();
-        $this->tasksMonthly = Task::whereMonth('created_at', Carbon::now()->month)->get();
-        $this->monthlyBills = Bill::whereMonth('created_at', Carbon::now()->month)->get();
+        
         if(Auth::user()->group == "employee")
         {
             return redirect()->route("employee-task-unaccepted.index");
@@ -51,6 +47,13 @@ class Dashboard extends Component
     }
     public function render()
     {
-            return view('livewire.dashboard');
+            //Today
+            $tasksToday = Task::whereDate('created_at', Carbon::today())->paginate(8);
+            $todayBills = Bill::whereDate('created_at', Carbon::today())->paginate(8);
+
+            //Monthly
+            $tasksMonthly = Task::whereMonth('created_at', Carbon::now()->month)->paginate(8);
+            $monthlyBills = Bill::whereMonth('created_at', Carbon::now()->month)->paginate(8);
+            return view('livewire.dashboard', ['tasksToday' => $tasksToday, 'todayBills' => $todayBills, 'tasksMonthly' => $tasksMonthly, 'monthlyBills' => $monthlyBills]);
     }
 }
