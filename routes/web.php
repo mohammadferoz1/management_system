@@ -34,6 +34,9 @@ use App\Http\Livewire\Employeeexpense\Edit as EmployeeExpenseEdit;
 use App\Http\Livewire\HomeExpense\Index as HomeExpenseIndex;
 use App\Http\Livewire\HomeExpense\Create as HomeExpenseCreate;
 use App\Http\Livewire\HomeExpense\Edit as HomeExpenseEdit;
+use App\Http\Livewire\EmployeeRequest\Create as RequestCreate;
+use App\Http\Livewire\EmployeeRequest\Index as RequestIndex;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -112,6 +115,10 @@ Route::group(['middleware' => ['auth', 'employee']], function(){
     Route::group(['prefix'=>'employee/BillRequest'], function(){\
         Route::get('/create', BillCreate::class)->name('employeebill.create');
         // Route::get('/edit/{id}', TaskEdit::class)->name('task.edit');
+    });
+    Route::group(['prefix'=>'employee/Request'], function(){\
+        Route::get('/create', RequestCreate::class)->name('request.create');
+        Route::get('/index', RequestIndex::class)->name('request.index');
     });
 });
 Route::group(['middleware' => ['auth']], function(){

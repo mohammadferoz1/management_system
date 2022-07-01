@@ -1,20 +1,7 @@
 <div>
     <x-page-title title="Tasks List">
     </x-page-title>
-    <div class="grid grid-cols-4 gap-2">
-        <div>
-            <x-common.button type="button" wire:click="create()" class="">Create</x-common.button>
-        </div>
-        <div>
-
-        </div>
-        <div>
-
-        </div>
-        <div>
-            <x-form.input type="text" type="search" wire:model="search"  placeholder="Search..."></x-form.input>
-        </div>
-    </div>
+    <x-common.button type="button" wire:click="create()" class="">Create</x-common.button>
     @if (session()->has('message'))
         <x-common.alert message="{{ session('message') }}">
         </x-common.alert>
@@ -49,7 +36,7 @@
             </x-table.row>
         </x-slot>
         <x-slot name="body">
-            @foreach($tasks as $task)
+            @foreach($this->tasks as $task)
                 <x-table.row>
                     <x-table.cell>
                         {{$task->name}}
@@ -57,18 +44,7 @@
                     <x-table.cell>
                         {{$task->site->name}}
                     </x-table.cell>
-                    <x-table.cell>
-                        {{$task->start_at}}
-                    </x-table.cell>
-                    <x-table.cell>
-                        {{$task->end_at}}
-                    </x-table.cell>
-                    <x-table.cell>
-                        {{$task->num_of_workers}}
-                    </x-table.cell>
-                    <x-table.cell>
-                        {{$task->status}}
-                    </x-table.cell>
+
                     <x-table.cell>
                         {{$task->created_at}}
                     </x-table.cell>
@@ -89,5 +65,4 @@
             @endforeach
         </x-slot>
     </x-table>
-    {{$tasks->links()}}
 </div>
