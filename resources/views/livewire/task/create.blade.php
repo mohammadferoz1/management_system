@@ -6,6 +6,9 @@
                 <x-slot name="errorMessages">
                     @error('name') <li>{{$message}} </li>@enderror
                     @error('site_id') <li>{{$message}} </li>@enderror
+                    @error('start_at') <li>{{$message}} </li>@enderror
+                    @error('end_at') <li>{{$message}} </li>@enderror
+                    @error('num_of_workers') <li>{{$message}} </li>@enderror
                 </x-slot>
             @endif
             <x-slot name="body">

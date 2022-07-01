@@ -45,6 +45,17 @@ class Create extends Component
         return view('livewire.bill.create');
     }
     public function store(){
+        $this->validate([
+            'site_id' => 'required',
+            'siteSelect' => 'required',
+            'products' => 'required|array|min:1',
+            'prices' => 'required|array|min:1|size:'.count($this->products)
+        ],
+            [
+                'prices.size' => 'Please select product name for price',
+                'site_id.required' => 'Please select site name'
+            ],
+        );
         $product_detail = [];
         $total_price = 0;
         foreach($this->prices as $price){
@@ -55,9 +66,6 @@ class Create extends Component
             array_push($product_detail, array("name" => $this->products[$i], "price" => $this->prices[$i]));
         }
         $product_detail_json = json_encode($product_detail);
-        $this->validate([
-            'site_id' => 'required',
-        ]);
         if($this->siteSelect == "non_contracted"){
             $site = Site::find($this->site_id);
             $site->credit += $total_price;

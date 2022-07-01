@@ -68,24 +68,24 @@
                 </div>
               </dl>
         </div>
-        <div class="text-center">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+        <div class="text-center mb-4">
+            <button wire:click="prevMonth()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
                 Previous Month
             </button>
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+            <button wire:click="thisMonth()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
                 This Month
             </button>
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+            <button wire:click="yesterday()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
                 Yesterday
             </button>
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+            <button wire:click="today()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
                 Today
             </button>
         </div>
 
 
         <div>
-            <h3 class="text-lg leading-6 font-bold text-white text-center bg-black pt-2 pb-2">This Month</h3>
+            <h3 class="text-lg leading-6 font-bold text-white text-center bg-black pt-2 pb-2">{{$heading}}</h3>
             <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
               <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
                 <dt class="text-sm font-medium text-gray-500 truncate">Home Expense</dt>
@@ -141,7 +141,7 @@
                     </x-table.row>
                 </x-slot>
                 <x-slot name="body">
-                    @foreach($tasksMonthly as $task)
+                    @foreach($tasks as $task)
                         <x-table.row>
                             <x-table.cell>
                                 {{$task->name}}
@@ -189,110 +189,7 @@
                         </x-table.headings>
                     </x-table.row>
                     <x-slot name="body">
-                        @foreach($monthlyBills as $bill)
-                            <x-table.row>
-                                <x-table.cell>
-                                    {{$bill->user->name}}
-                                </x-table.cell>
-                                <x-table.cell>
-                                    @if($bill->site_type == 'non_contracted')
-                                        {{$bill->site->name}}
-                                    @else
-                                        {{$bill->contractedsite->name}}
-                                    @endif
-                                </x-table.cell>
-                                <x-table.cell>
-                                    {{$bill->total_price}}
-                                </x-table.cell>
-                                <x-table.cell>
-                                    {{$bill->debit}}
-                                </x-table.cell>
-                                <x-table.cell>
-                                    {{$bill->credit}}
-                                </x-table.cell>
-                                <x-table.cell>
-                                    {{$bill->status}}
-                                </x-table.cell>
-                            </x-table.row>
-                        @endforeach
-                    </x-slot>
-                </x-slot>
-            </x-table>
-        <h3 class="text-lg leading-6 font-bold text-white text-center bg-black pt-2 pb-2 mb-3">Today</h3>
-        <x-page-title title="Tasks"></x-page-tile>
-            <x-table>
-                <x-slot name="head">
-                    <x-table.row>
-                        <x-table.headings>
-                            Name
-                        </x-table.headings>
-                        <x-table.headings>
-                            Site Name
-                        </x-table.headings>
-                        <x-table.headings>
-                            Start at
-                        </x-table.headings>
-                        <x-table.headings>
-                            End at
-                        </x-table.headings>
-                        <x-table.headings>
-                            Number Of Workers
-                        </x-table.headings>
-                        <x-table.headings>
-                            Status
-                        </x-table.headings>
-                    </x-table.row>
-                </x-slot>
-                <x-slot name="body">
-                    @foreach($tasksToday as $task)
-                        <x-table.row>
-                            <x-table.cell>
-                                {{$task->name}}
-                            </x-table.cell>
-                            <x-table.cell>
-                                {{$task->site->name}}
-                            </x-table.cell>
-                            <x-table.cell>
-                                {{$task->start_at}}
-                            </x-table.cell>
-                            <x-table.cell>
-                                {{$task->end_at}}
-                            </x-table.cell>
-                            <x-table.cell>
-                                {{$task->num_of_workers}}
-                            </x-table.cell>
-                            <x-table.cell>
-                                {{$task->status}}
-                            </x-table.cell>
-                        </x-table.row>
-                    @endforeach
-                </x-slot>
-            </x-table>
-        <x-page-title title="Bills"></x-page-tile>
-            <x-table>
-                <x-slot name="head">
-                    <x-table.row>
-                        <x-table.headings>
-                            Made By
-                        </x-table.headings>
-                        <x-table.headings>
-                            Site Name
-                        </x-table.headings>
-                        <x-table.headings>
-                            Total Price
-                        </x-table.headings>
-                        <x-table.headings>
-                            Debit
-                        </x-table.headings>
-                        <x-table.headings>
-                            Credit
-                        </x-table.headings>
-                        <x-table.headings>
-                            Status
-                        </x-table.headings>
-                    </x-table.row>
-                    <x-slot name="body">
-                        @foreach($todayBills as $bill)
+                        @foreach($bills as $bill)
                             <x-table.row>
                                 <x-table.cell>
                                     {{$bill->user->name}}
