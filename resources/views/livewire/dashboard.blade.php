@@ -37,12 +37,59 @@
                 </div>
               </dl>
         </div>
+        <div class="mb-4">
+            <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+                <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt class="text-sm font-medium text-gray-500 truncate">Requests Waiting for Approval</dt>
+                  <dd class="mt-1 text-3xl font-semibold text-gray-900">{{$requestforapproval}}</dd>
+                </div>
+
+                <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt class="text-sm font-medium text-gray-500 truncate">Requests not completed</dt>
+                  <dd class="mt-1 text-3xl font-semibold text-gray-900">{{$requesttobecompleted}}</dd>
+                </div>
+
+                <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt class="text-sm font-medium text-gray-500 truncate">Pending Tasks for Employees</dt>
+                  <dd class="mt-1 text-3xl font-semibold text-gray-900">{{$pending_task}}</dd>
+                </div>
+              </dl>
+        </div>
+        <div class="mb-4">
+            <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+                <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt class="text-sm font-medium text-gray-500 truncate">Contracted Sites In Recovery Mode</dt>
+                  <dd class="mt-1 text-3xl font-semibold text-gray-900">{{$con_sites_recovery}}</dd>
+                </div>
+
+                <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt class="text-sm font-medium text-gray-500 truncate">Maintainece Sites in Blacklist</dt>
+                  <dd class="mt-1 text-3xl font-semibold text-gray-900">{{$main_sites_recovery}}</dd>
+                </div>
+              </dl>
+        </div>
+        <div class="text-center">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+                Previous Month
+            </button>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+                This Month
+            </button>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+                Yesterday
+            </button>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+                Today
+            </button>
+        </div>
+
+
         <div>
             <h3 class="text-lg leading-6 font-bold text-white text-center bg-black pt-2 pb-2">This Month</h3>
             <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
               <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
                 <dt class="text-sm font-medium text-gray-500 truncate">Home Expense</dt>
-                <dd class="mt-1 text-3xl font-semibold text-gray-900">Rs. {{$mHomeExpense}}</dd>
+                <dd class="mt-1 text-3xl font-semibold text-gray-900">{{$mHomeExpense}}</dd>
               </div>
 
               <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">

@@ -41,7 +41,7 @@ class Edit extends Component
             'type' => $this->type,
             'price' => $this->price,
         ]);
-        session()->flash('message', 'Employee Expense successfully created.');
+        session()->flash('message', 'Employee Expense successfully updated.');
         return redirect()->route('employees-expense.index');
     }
 }

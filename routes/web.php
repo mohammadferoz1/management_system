@@ -17,6 +17,7 @@ use App\Http\Livewire\Bill\Index as BillIndex;
 use App\Http\Livewire\Bill\Create as BillCreate;
 use App\Http\Livewire\Bill\MakeLedger as BillLedgerCreate;
 use App\Http\Livewire\Bill\ListLedger as BillLedgerList;
+use App\Http\Livewire\Bill\BillById;
 use App\Http\Livewire\EmployeeTaskUnaccepted\Index as UnacceptedIndex;
 use App\Http\Livewire\EmployeeTaskAccepted\Index as AcceptedIndex;
 use App\Http\Livewire\Product\Index as ProductIndex;
@@ -36,6 +37,7 @@ use App\Http\Livewire\HomeExpense\Create as HomeExpenseCreate;
 use App\Http\Livewire\HomeExpense\Edit as HomeExpenseEdit;
 use App\Http\Livewire\EmployeeRequest\Create as RequestCreate;
 use App\Http\Livewire\EmployeeRequest\Index as RequestIndex;
+use App\Http\Livewire\EmployeeRequest\Edit as RequestEdit;
 
 
 /*
@@ -82,6 +84,7 @@ Route::group(['middleware' => ['auth', 'admin']], function(){
         Route::get('/create', BillCreate::class)->name('bill.create');
         Route::get('/make-ledger/{id}', BillLedgerCreate::class)->name('bill.makeLedger');
         Route::get('/list-ledger/{id}', BillLedgerList::class)->name('bill.listLedger');
+        Route::get('/billByid', BillById::class)->name('bill.BillById');
         // Route::get('/edit/{id}', TaskEdit::class)->name('task.edit');
     });
     Route::group(['prefix'=>'admin/product'], function(){\
@@ -93,6 +96,9 @@ Route::group(['middleware' => ['auth', 'admin']], function(){
         Route::get('/index', HomeExpenseIndex::class)->name('home-expense.index');
         Route::get('/create', HomeExpenseCreate::class)->name('home-expense.create');
         Route::get('/edit/{id}', HomeExpenseEdit::class)->name('home-expense.edit');
+    });
+    Route::group(['prefix'=>'admin/Request'], function(){\
+        Route::get('/index', RequestIndex::class)->name('adminrequest.index');
     });
     Route::group(['prefix'=>'admin/employee-expense'], function(){\
         Route::get('/index', EmployeeExpenseIndex::class)->name('employees-expense.index');
@@ -119,6 +125,7 @@ Route::group(['middleware' => ['auth', 'employee']], function(){
     Route::group(['prefix'=>'employee/Request'], function(){\
         Route::get('/create', RequestCreate::class)->name('request.create');
         Route::get('/index', RequestIndex::class)->name('request.index');
+        Route::get('/edit/{id}', RequestEdit::class)->name('request.edit');
     });
 });
 Route::group(['middleware' => ['auth']], function(){

@@ -16,8 +16,10 @@ class EmployeeRequest extends Migration
         Schema::create('employee_request', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('site_id');
             $table->text('name');
             $table->text('decription');
+            $table->foreign('site_id')->references('id')->on('sites');
             $table->foreign('user_id')->references('id')->on('users');
             $table->enum('status', ['waiting_for_approval', 'Approved and in pending', 'completed']);
             $table->timestamps();

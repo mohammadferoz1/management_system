@@ -22,4 +22,24 @@ class Index extends Component
     {
         return view('livewire.employee-request.index');
     }
+    public function create(){
+        return redirect()->route('request.create');
+    }
+    public function edit($id)
+    {
+        return redirect()->route('request.edit', $id);
+    }
+    public function approve($id){
+        EmployeeRequest::whereId($id)->update([
+            'status' => 'approved_and_in_pending',
+        ]);
+        $this->requests = EmployeeRequest::get();
+    }
+
+    public function completed($id){
+        EmployeeRequest::whereId($id)->update([
+            'status' => 'completed',
+        ]);
+        $this->requests = EmployeeRequest::get();
+    }
 }
