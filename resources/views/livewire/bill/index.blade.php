@@ -1,7 +1,20 @@
 <div>
     <x-page-title title="Bills List">
     </x-page-title>
-    <x-common.button type="button" wire:click="create()" class="">Create</x-common.button>
+    <div class="grid grid-cols-4 gap-2">
+        <div>
+            <x-common.button type="button" wire:click="create()" class="">Create</x-common.button>
+        </div>
+        <div>
+
+        </div>
+        <div>
+
+        </div>
+        <div>
+            <x-form.input type="text" type="search" wire:model="search"  placeholder="Search..."></x-form.input>
+        </div>
+    </div>
     @if (session()->has('message'))
         <x-common.alert message="{{ session('message') }}">
         </x-common.alert>
@@ -10,7 +23,16 @@
         <x-slot name="head">
             <x-table.row>
                 <x-table.headings>
+                    ID
+                </x-table.headings>
+                <x-table.headings>
+                    Made By
+                </x-table.headings>
+                <x-table.headings>
                     Site Name
+                </x-table.headings>
+                <x-table.headings>
+                    Site Type
                 </x-table.headings>
                 <x-table.headings>
                     Total Price
@@ -33,10 +55,23 @@
             </x-table.row>
         </x-slot>
         <x-slot name="body">
-            @foreach($this->bills as $bill)
+            @foreach($bills as $bill)
                 <x-table.row>
                     <x-table.cell>
-                        {{$bill->site->name}}
+                        {{$bill->id}}
+                    </x-table.cell>
+                    <x-table.cell>
+                        {{$bill->user->name}}
+                    </x-table.cell>
+                    <x-table.cell>
+                        @if($bill->site_type == 'non_contracted')
+                            {{$bill->site->name}}
+                        @else
+                            {{$bill->contractedsite->name}}
+                        @endif
+                    </x-table.cell>
+                    <x-table.cell>
+                        {{$bill->site_type}}
                     </x-table.cell>
                     <x-table.cell>
                         {{$bill->total_price}}
@@ -54,7 +89,7 @@
                         {{$bill->created_at}}
                     </x-table.cell>
                     <x-table.cell>
-                        <x-common.button type="button" wire:click="edit({{$bill->id}})" class="">Edit</x-common.button>
+                        <!-- <x-common.button type="button" wire:click="edit({{$bill->id}})" class="">Edit</x-common.button> -->
                         @if($bill->credit != 0)
                             <x-common.button type="button" wire:click="makeLedger({{$bill->id}})" class="">Debit</x-common.button>
                         @endif
@@ -65,4 +100,5 @@
             @endforeach
         </x-slot>
     </x-table>
+    {{$bills->links()}}
 </div>

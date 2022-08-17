@@ -7,15 +7,20 @@ use App\Models\User;
 
 class Index extends Component
 {
-    public $employees;
-
-    public function mount(){
-        $this->employees = User::whereGroup('employee')->get();
-    }
+    public $search;
+    protected $queryString = [
+        'search'  => ['except' => ''],
+    ];
 
     public function render()
     {
-        return view('livewire.employee.index');
+        $employees = User::where([['name', 'like', '%'.$this->search.'%'], ['group', 'employee']])
+        ->orWhere([['email', 'like', '%'.$this->search.'%'], ['group', 'employee']])
+        ->orWhere([['phone', 'like', '%'.$this->search.'%'], ['group', 'employee']])
+        ->orWhere([['created_at', 'like', '%'.$this->search.'%'], ['group', 'employee']])
+        ->orderBy('created_at', 'desc');
+        $employees = $employees->paginate(10);
+        return view('livewire.employee.index', ['employees' => $employees]);
     }
 
     public function create(){

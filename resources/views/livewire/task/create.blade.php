@@ -6,6 +6,9 @@
                 <x-slot name="errorMessages">
                     @error('name') <li>{{$message}} </li>@enderror
                     @error('site_id') <li>{{$message}} </li>@enderror
+                    @error('start_at') <li>{{$message}} </li>@enderror
+                    @error('end_at') <li>{{$message}} </li>@enderror
+                    @error('num_of_workers') <li>{{$message}} </li>@enderror
                 </x-slot>
             @endif
             <x-slot name="body">
@@ -15,7 +18,7 @@
                 </x-form.group>
                 <x-form.group>
                     <x-form.label>Select Site</x-form.label>
-                    <x-form.select name="site_id" wire:model="site_id">
+                    <x-form.select class="mt-0" name="site_id" wire:model="site_id">
 
                         <option value="null">Please Select</option>
                         @foreach ($sites as $site)

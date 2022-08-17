@@ -1,35 +1,224 @@
 <div>
-    <x-page-title title="Dashboard"></x-page-tile>
-        <div class="mb-4">
-            <dl class="mt-5 grid grid-cols-1 rounded-lg bg-white overflow-hidden shadow divide-y divide-gray-200 md:grid-cols-3 md:divide-y-0 md:divide-x">
-              <div class="px-4 py-5 sm:p-6">
-                <dt class="text-base font-normal text-gray-900">Paid Amount</dt>
-                <dd class="mt-1 flex justify-between items-baseline md:block lg:flex">
-                  <div class="flex items-baseline text-2xl font-semibold text-indigo-600">
-                    Rs. {{$paid_amount}}
-                  </div>
-                </dd>
+    <x-page-title title="Dashboard" class="text-center"></x-page-tile>
+        <div>
+            <h3 class="text-lg leading-6 font-bold text-white text-center bg-black pt-2 pb-2">Over All</h3>
+            <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+              <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                <dt class="text-sm font-medium text-gray-500 truncate">Home Expense</dt>
+                <dd class="mt-1 text-3xl font-semibold text-gray-900">Rs. {{$homeExpense}}</dd>
               </div>
 
-              <div class="px-4 py-5 sm:p-6">
-                <dt class="text-base font-normal text-gray-900">Unpaid Amount</dt>
-                <dd class="mt-1 flex justify-between items-baseline md:block lg:flex">
-                  <div class="flex items-baseline text-2xl font-semibold text-indigo-600">
-                    Rs. {{$unpaid_amount}}
-                  </div>
-                </dd>
+              <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                <dt class="text-sm font-medium text-gray-500 truncate">Employee Expense</dt>
+                <dd class="mt-1 text-3xl font-semibold text-gray-900">Rs. {{$employeeExpense}}</dd>
               </div>
 
-              <div class="px-4 py-5 sm:p-6">
-                <dt class="text-base font-normal text-gray-900">Zakat</dt>
-                <dd class="mt-1 flex justify-between items-baseline md:block lg:flex">
-                  <div class="flex items-baseline text-2xl font-semibold text-indigo-600">
-                    Rs. {{$zakat}}
-                  </div>
-                </dd>
+              <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                <dt class="text-sm font-medium text-gray-500 truncate">Total Expense</dt>
+                <dd class="mt-1 text-3xl font-semibold text-gray-900">Rs. {{$totalExpense}}</dd>
               </div>
             </dl>
         </div>
+        <div class="mb-4">
+            <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+                <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt class="text-sm font-medium text-gray-500 truncate">Paid Amount</dt>
+                  <dd class="mt-1 text-3xl font-semibold text-gray-900">Rs. {{$paid_amount}}</dd>
+                </div>
+
+                <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt class="text-sm font-medium text-gray-500 truncate">Unpaid Amount</dt>
+                  <dd class="mt-1 text-3xl font-semibold text-gray-900">Rs. {{$unpaid_amount}}</dd>
+                </div>
+
+                <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt class="text-sm font-medium text-gray-500 truncate">Zakat</dt>
+                  <dd class="mt-1 text-3xl font-semibold text-gray-900">Rs. {{$zakat}}</dd>
+                </div>
+              </dl>
+        </div>
+        <div class="mb-4">
+            <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+                <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt class="text-sm font-medium text-gray-500 truncate">Requests Waiting for Approval</dt>
+                  <dd class="mt-1 text-3xl font-semibold text-gray-900">{{$requestforapproval}}</dd>
+                </div>
+
+                <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt class="text-sm font-medium text-gray-500 truncate">Requests not completed</dt>
+                  <dd class="mt-1 text-3xl font-semibold text-gray-900">{{$requesttobecompleted}}</dd>
+                </div>
+
+                <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt class="text-sm font-medium text-gray-500 truncate">Pending Tasks for Employees</dt>
+                  <dd class="mt-1 text-3xl font-semibold text-gray-900">{{$pending_task}}</dd>
+                </div>
+              </dl>
+        </div>
+        <div class="mb-4">
+            <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+                <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt class="text-sm font-medium text-gray-500 truncate">Contracted Sites In Recovery Mode</dt>
+                  <dd class="mt-1 text-3xl font-semibold text-gray-900">{{$con_sites_recovery}}</dd>
+                </div>
+
+                <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt class="text-sm font-medium text-gray-500 truncate">Maintainece Sites in Blacklist</dt>
+                  <dd class="mt-1 text-3xl font-semibold text-gray-900">{{$main_sites_recovery}}</dd>
+                </div>
+              </dl>
+        </div>
+        <div class="text-center mb-4">
+            <button wire:click="prevMonth()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+                Previous Month
+            </button>
+            <button wire:click="thisMonth()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+                This Month
+            </button>
+            <button wire:click="yesterday()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+                Yesterday
+            </button>
+            <button wire:click="today()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+                Today
+            </button>
+        </div>
+
+
+        <div>
+            <h3 class="text-lg leading-6 font-bold text-white text-center bg-black pt-2 pb-2">{{$heading}}</h3>
+            <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+              <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                <dt class="text-sm font-medium text-gray-500 truncate">Home Expense</dt>
+                <dd class="mt-1 text-3xl font-semibold text-gray-900">{{$mHomeExpense}}</dd>
+              </div>
+
+              <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                <dt class="text-sm font-medium text-gray-500 truncate">Employee Expense</dt>
+                <dd class="mt-1 text-3xl font-semibold text-gray-900">Rs. {{$mEmployeeExpense}}</dd>
+              </div>
+
+              <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                <dt class="text-sm font-medium text-gray-500 truncate">Total Expense</dt>
+                <dd class="mt-1 text-3xl font-semibold text-gray-900">Rs. {{$mTotalExpense}}</dd>
+              </div>
+            </dl>
+        </div>
+        <div class="mb-4">
+            <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+                <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt class="text-sm font-medium text-gray-500 truncate">Paid Amount</dt>
+                  <dd class="mt-1 text-3xl font-semibold text-gray-900">Rs. {{$mPaid_amount}}</dd>
+                </div>
+
+                <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt class="text-sm font-medium text-gray-500 truncate">Unpaid Amount</dt>
+                  <dd class="mt-1 text-3xl font-semibold text-gray-900">Rs. {{$mUnpaid_amount}}</dd>
+                </div>
+              </dl>
+        </div>
+        <x-page-title title="Tasks"></x-page-tile>
+            <x-table>
+                <x-slot name="head">
+                    <x-table.row>
+                        <x-table.headings>
+                            Name
+                        </x-table.headings>
+                        <x-table.headings>
+                            Site Name
+                        </x-table.headings>
+                        <x-table.headings>
+                            Start at
+                        </x-table.headings>
+                        <x-table.headings>
+                            End at
+                        </x-table.headings>
+                        <x-table.headings>
+                            Number Of Workers
+                        </x-table.headings>
+                        <x-table.headings>
+                            Status
+                        </x-table.headings>
+                    </x-table.row>
+                </x-slot>
+                <x-slot name="body">
+                    @foreach($tasks as $task)
+                        <x-table.row>
+                            <x-table.cell>
+                                {{$task->name}}
+                            </x-table.cell>
+                            <x-table.cell>
+                                {{$task->site->name}}
+                            </x-table.cell>
+                            <x-table.cell>
+                                {{$task->start_at}}
+                            </x-table.cell>
+                            <x-table.cell>
+                                {{$task->end_at}}
+                            </x-table.cell>
+                            <x-table.cell>
+                                {{$task->num_of_workers}}
+                            </x-table.cell>
+                            <x-table.cell>
+                                {{$task->status}}
+                            </x-table.cell>
+                        </x-table.row>
+                    @endforeach
+                </x-slot>
+            </x-table>
+        <x-page-title title="Bills"></x-page-tile>
+            <x-table>
+                <x-slot name="head">
+                    <x-table.row>
+                        <x-table.headings>
+                            Made By
+                        </x-table.headings>
+                        <x-table.headings>
+                            Site Name
+                        </x-table.headings>
+                        <x-table.headings>
+                            Total Price
+                        </x-table.headings>
+                        <x-table.headings>
+                            Debit
+                        </x-table.headings>
+                        <x-table.headings>
+                            Credit
+                        </x-table.headings>
+                        <x-table.headings>
+                            Status
+                        </x-table.headings>
+                    </x-table.row>
+                    <x-slot name="body">
+                        @foreach($bills as $bill)
+                            <x-table.row>
+                                <x-table.cell>
+                                    {{$bill->user->name}}
+                                </x-table.cell>
+                                <x-table.cell>
+                                    @if($bill->site_type == 'non_contracted')
+                                        {{$bill->site->name}}
+                                    @else
+                                        {{$bill->contractedsite->name}}
+                                    @endif
+                                </x-table.cell>
+                                <x-table.cell>
+                                    {{$bill->total_price}}
+                                </x-table.cell>
+                                <x-table.cell>
+                                    {{$bill->debit}}
+                                </x-table.cell>
+                                <x-table.cell>
+                                    {{$bill->credit}}
+                                </x-table.cell>
+                                <x-table.cell>
+                                    {{$bill->status}}
+                                </x-table.cell>
+                            </x-table.row>
+                        @endforeach
+                    </x-slot>
+                </x-slot>
+            </x-table>
+
         <x-page-title title="Black List Sites"></x-page-tile>
         <x-table>
             <x-slot name="head">
@@ -59,7 +248,6 @@
             </x-slot>
             <x-slot name="body">
                 @foreach($this->blackListSites as $site)
-                    @if($site->checkIfBlackList()[0] > 0 || $site->checkIfBlackList()[1] > 1)
                         <x-table.row>
                             <x-table.cell>
                                 {{$site->name}}
@@ -77,11 +265,7 @@
                                 {{$site->address}}
                             </x-table.cell>
                             <x-table.cell>
-                                @if($site->checkIfBlackList()[0] > 0 || $site->checkIfBlackList()[1] > 1)
                                 <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-white bg-black rounded-full">BlackList</span>
-                                @else
-                                <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-white bg-lime-500 rounded-full">Good</span>
-                                @endif
                             </x-table.cell>
                             <x-table.cell>
                                 <button wire:click="edit({{$site->id}})">
@@ -91,7 +275,6 @@
                                 </button>
                             </x-table.cell>
                         </x-table.row>
-                    @endif
                 @endforeach
             </x-slot>
         </x-table>
