@@ -21,6 +21,8 @@ class Create extends Component
     public $siteSelect;
     public $getProducts;
     public $description;
+    public $repairing_item;
+    public $client_complaint;
 
     public function mount(){
         $this->products = [];
@@ -65,7 +67,7 @@ class Create extends Component
         }
         for($i = 0 ; $i < count($this->products); $i++)
         {
-            array_push($product_detail, array("name" => $this->products[$i], "price" => $this->prices[$i]));
+            array_push($product_detail, array("name" => Product::find($this->products[$i])->name, "price" => $this->prices[$i]));
         }
         $product_detail_json = json_encode($product_detail);
         if($this->siteSelect == "non_contracted"){
@@ -89,7 +91,9 @@ class Create extends Component
                 'credit' => $total_price,
                 'user_id' => Auth::id(),
                 'pdf_link' => '/storage'.$path,
-                'description' => $this->description
+                'description' => $this->description,
+                'client_complaint' => $this->client_complaint,
+                'repairing_item' => $this->repairing_item
             ]);
         }
         else{
@@ -103,12 +107,14 @@ class Create extends Component
                 'status' => 'paid',
                 'user_id' => Auth::id(),
                 'pdf_link' => '/storage'.$path,
-                'description' => $this->description
+                'description' => $this->description,
+                'client_complaint' => $this->client_complaint,
+                'repairing_item' => $this->repairing_item
             ]);
         }
         $all_data = [];
         $all_data = ["product_detail" => $product_detail, "site_name" => $site->name,
-        "generation_date" => $bill->created_at, "total_price" => $total_price, "bill_id" => $bill->id, "site" => $site];
+        "generation_date" => $bill->created_at, "total_price" => $total_price, "bill_id" => $bill->id, "site" => $site, 'client_complaint' => $bill->client_complaint, 'repairing_item' => $bill->repairing_item, 'working_remedy' => $bill->description, 'made_by' => $bill->user->name];
         $pdf = PDF::loadView('billPDF', $all_data)->setOptions(['defaultFont' => 'sans-serif']);
         Storage::put('public'.$path, $pdf->output());
         if(Auth::user()->group == "admin")

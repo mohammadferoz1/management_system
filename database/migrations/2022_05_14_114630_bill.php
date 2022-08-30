@@ -25,6 +25,8 @@ class Bill extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
             $table->text('pdf_link');
+            $table->text('client_complaint');
+            $table->text('repairing_item');
             $table->text('description');
             $table->foreign('site_id')->references('id')->on('sites')->onDelete('cascade');
             $table->timestamps();
