@@ -167,6 +167,9 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
                             </svg>
                             Employee Request
+                            <span class="inline-flex justify-center items-center ml-2 w-4 h-4 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full">
+                                {{App\Models\EmployeeRequest::whereStatus('waiting_for_approval')->get()->count()}}
+                            </span>
                           </a>
                       @else
                         <a href="{{route("employee-task-unaccepted.index")}}" class="{{ (request()->is('employee/employee-task-unaccepted/index')) ? 'bg-indigo-800' : 'hover:bg-indigo-600' }} text-white hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">

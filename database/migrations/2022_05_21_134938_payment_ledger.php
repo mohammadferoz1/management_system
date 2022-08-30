@@ -17,7 +17,7 @@ class PaymentLedger extends Migration
             $table->id();
             $table->integer('payment');
             $table->unsignedBigInteger('bill_id');
-            $table->foreign('bill_id')->references('id')->on('bills');
+            $table->foreign('bill_id')->references('id')->on('bills')->onDelete('cascade');
             $table->timestamps();
         });
     }

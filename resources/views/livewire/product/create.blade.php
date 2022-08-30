@@ -6,6 +6,7 @@
                 <x-slot name="errorMessages">
                     @error('products') <li>{{$message}} </li>@enderror
                     @error('prices') <li>{{$message}} </li>@enderror
+                    @error('quantity') <li>{{$message}} </li>@enderror
                 </x-slot>
             @endif
             <x-slot name="body">
@@ -30,6 +31,15 @@
                         <x-form.label> Price </x-form.label>
                     @endif
                         <x-form.input type="number" class="mt-4" wire:model="prices.{{$i}}" placeholder="Product Price" required>  </x-form.input>
+                    @endfor
+                </x-form.group>
+
+                <x-form.group name="group">
+                    @for($i = 0; $i < $optionCount; $i++)
+                    @if ($i == 0)
+                        <x-form.label> Price </x-form.label>
+                    @endif
+                        <x-form.input type="number" class="mt-4" wire:model="quantity.{{$i}}" placeholder="Product Quantity" required>  </x-form.input>
                     @endfor
                 </x-form.group>
             </x-slot>

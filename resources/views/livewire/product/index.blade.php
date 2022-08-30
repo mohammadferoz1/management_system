@@ -28,6 +28,7 @@
                 <x-table.headings>
                 </x-table.headings>
                 <x-table.headings>
+                    Quantity
                 </x-table.headings>
                 <x-table.headings>
                 </x-table.headings>
@@ -55,6 +56,7 @@
                     <x-table.cell>
                     </x-table.cell>
                     <x-table.cell>
+                        {{$product->quantity}}
                     </x-table.cell>
                     <x-table.cell>
                     </x-table.cell>

@@ -23,9 +23,10 @@ class Bill extends Migration
             $table->unsignedBigInteger('site_id');
             $table->enum('site_type', ['contracted', 'non_contracted']);
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
             $table->text('pdf_link');
-            $table->foreign('site_id')->references('id')->on('sites');
+            $table->text('description');
+            $table->foreign('site_id')->references('id')->on('sites')->onDelete('cascade');
             $table->timestamps();
         });
     }

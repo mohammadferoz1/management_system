@@ -21,6 +21,9 @@
                     Credit
                 </x-table.headings>
                 <x-table.headings>
+                    Description
+                </x-table.headings>
+                <x-table.headings>
                     Status
                 </x-table.headings>
                 <x-table.headings>
@@ -47,13 +50,16 @@
                         {{$bill->credit}}
                     </x-table.cell>
                     <x-table.cell>
+                        {{$bill->description}}
+                    </x-table.cell>
+                    <x-table.cell>
                         {{$bill->status}}
                     </x-table.cell>
                     <x-table.cell>
                         {{$bill->created_at}}
                     </x-table.cell>
                     <x-table.cell>
-                        <x-common.button type="button" wire:click="edit({{$bill->id}})" class="">Edit</x-common.button>
+                        <x-common.button type="button" wire:click="delete({{$bill->id}})" style="background-color: red" class="">Delete</x-common.button>
                         @if($bill->credit != 0)
                             <x-common.button type="button" wire:click="makeLedger({{$bill->id}})" class="">Debit</x-common.button>
                         @endif

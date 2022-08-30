@@ -35,6 +35,9 @@
                     Site Type
                 </x-table.headings>
                 <x-table.headings>
+                    Description
+                </x-table.headings>
+                <x-table.headings>
                     Total Price
                 </x-table.headings>
                 <x-table.headings>
@@ -74,6 +77,9 @@
                         {{$bill->site_type}}
                     </x-table.cell>
                     <x-table.cell>
+                        {{$bill->description}}
+                    </x-table.cell>
+                    <x-table.cell>
                         {{$bill->total_price}}
                     </x-table.cell>
                     <x-table.cell>
@@ -89,7 +95,9 @@
                         {{$bill->created_at}}
                     </x-table.cell>
                     <x-table.cell>
-                        <!-- <x-common.button type="button" wire:click="edit({{$bill->id}})" class="">Edit</x-common.button> -->
+                        <x-common.button type="button" style="background-color:red;" wire:click="delete({{$bill->id}})" class="">
+                            Delete
+                        </x-common.button>
                         @if($bill->credit != 0)
                             <x-common.button type="button" wire:click="makeLedger({{$bill->id}})" class="">Debit</x-common.button>
                         @endif

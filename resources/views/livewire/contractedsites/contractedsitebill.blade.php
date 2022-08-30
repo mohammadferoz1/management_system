@@ -21,6 +21,9 @@
                     Credit
                 </x-table.headings>
                 <x-table.headings>
+                    Description
+                </x-table.headings>
+                <x-table.headings>
                     Status
                 </x-table.headings>
                 <x-table.headings>
@@ -47,17 +50,17 @@
                         {{$bill->credit}}
                     </x-table.cell>
                     <x-table.cell>
+                        {{$bill->description}}
+                    </x-table.cell>
+                    <x-table.cell>
                         {{$bill->status}}
                     </x-table.cell>
                     <x-table.cell>
                         {{$bill->created_at}}
                     </x-table.cell>
                     <x-table.cell>
-                        <x-common.button type="button" wire:click="edit({{$bill->id}})" class="">Edit</x-common.button>
-                        @if($bill->credit != 0)
-                            <x-common.button type="button" wire:click="makeLedger({{$bill->id}})" class="">Debit</x-common.button>
-                        @endif
-                        <x-common.button type="button" wire:click="listLedger({{$bill->id}})" class="">View</x-common.button>
+                        <x-common.button type="button" wire:click="delete({{$bill->id}})" style="background-color: red" class="">Delete</x-common.button>
+                        <a href="{{$bill->pdf_link}}" target="_blank" class="inline-flex items-center px-5 py-2 tracking-wider border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">PDF</a>
                     </x-table.cell>
                 </x-table.row>
             @endforeach

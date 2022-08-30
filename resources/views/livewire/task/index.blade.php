@@ -36,13 +36,25 @@
             </x-table.row>
         </x-slot>
         <x-slot name="body">
-            @foreach($this->tasks as $task)
+            @foreach($tasks as $task)
                 <x-table.row>
                     <x-table.cell>
                         {{$task->name}}
                     </x-table.cell>
                     <x-table.cell>
                         {{$task->site->name}}
+                    </x-table.cell>
+                    <x-table.cell>
+                        {{$task->start_at}}
+                    </x-table.cell>
+                    <x-table.cell>
+                        {{$task->end_at}}
+                    </x-table.cell>
+                    <x-table.cell>
+                        {{$task->num_of_workers}}
+                    </x-table.cell>
+                    <x-table.cell>
+                        {{$task->status}}
                     </x-table.cell>
 
                     <x-table.cell>

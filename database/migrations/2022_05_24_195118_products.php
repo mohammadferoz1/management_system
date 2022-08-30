@@ -17,6 +17,7 @@ class Products extends Migration
             $table->id();
             $table->text('name');
             $table->integer('price');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
