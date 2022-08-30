@@ -32,6 +32,7 @@
                         <x-form.input type="number" class="mt-4" wire:model="prices.{{$i}}" placeholder="Product Price" required>  </x-form.input>
                     @endfor
                 </x-form.group>
+
             </x-slot>
         </x-form.main>
         <x-common.button type="submit">submit</x-common.button>

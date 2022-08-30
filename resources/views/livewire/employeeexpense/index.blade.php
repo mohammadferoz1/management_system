@@ -29,6 +29,9 @@
                     Type
                 </x-table.headings>
                 <x-table.headings>
+                    Description
+                </x-table.headings>
+                <x-table.headings>
                     Price
                 </x-table.headings>
                 <x-table.headings>
@@ -47,6 +50,9 @@
                     </x-table.cell>
                     <x-table.cell>
                         {{$employee->type}}
+                    </x-table.cell>
+                    <x-table.cell>
+                        {{$employee->description}}
                     </x-table.cell>
                     <x-table.cell>
                         {{$employee->price}}

@@ -60,6 +60,12 @@
                      @endif
                     @endfor
                 </x-form.group>
+                <div class="col-span-12" style="margin-right: 145px">
+                    <x-form.group>
+                        <x-form.label> Description</x-form.label>
+                        <x-form.textarea wire:model="description"></x-form.textarea>
+                    </x-form.group>
+                </div>
             </x-slot>
         </x-form.main>
         <x-common.button type="submit">submit</x-common.button>

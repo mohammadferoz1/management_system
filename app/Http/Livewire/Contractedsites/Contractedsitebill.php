@@ -20,4 +20,10 @@ class Contractedsitebill extends Component
     {
         return view('livewire.contractedsites.contractedsitebill');
     }
+    public function delete($id){
+
+        $bill = Bill::find($id)->delete();
+        session()->flash('message', 'Deleted Successfully');
+        return redirect()->back();
+    }
 }

@@ -31,6 +31,10 @@
                     <x-form.label>Payment Amount</x-form.label>
                     <x-form.input type="number" class="mt-4" wire:model="price"></x-form.input>
                 </x-form.group>
+                <x-form.group>
+                    <x-form.label> Description</x-form.label>
+                    <x-form.textarea wire:model="description"></x-form.textarea>
+                </x-form.group>
             </x-slot>
         </x-form.main>
         <x-common.button type="submit">submit</x-common.button>

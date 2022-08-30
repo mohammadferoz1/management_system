@@ -29,4 +29,10 @@ class SiteBill extends Component
     public function listLedger($id){
         return redirect()->route('bill.listLedger', ['id' => $id]);
     }
+    public function delete($id){
+
+        $bill = Bill::find($id)->delete();
+        session()->flash('message', 'Deleted Successfully');
+        return redirect()->back();
+    }
 }

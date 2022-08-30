@@ -17,6 +17,7 @@ class EmployeesExpense extends Migration
             $table->id();
             $table->unsignedBigInteger('employee_id');
             $table->text('name');
+            $table->text('description');
             $table->enum('type',['salary', 'other expense']);
             $table->integer('price');
             $table->foreign('employee_id')->references('id')->on('users');

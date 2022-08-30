@@ -20,6 +20,7 @@ class Create extends Component
     public $site_id;
     public $siteSelect;
     public $getProducts;
+    public $description;
 
     public function mount(){
         $this->products = [];
@@ -49,7 +50,8 @@ class Create extends Component
             'site_id' => 'required',
             'siteSelect' => 'required',
             'products' => 'required|array|min:1',
-            'prices' => 'required|array|min:1|size:'.count($this->products)
+            'prices' => 'required|array|min:1|size:'.count($this->products),
+            'description' => 'required|string',
         ],
             [
                 'prices.size' => 'Please select product name for price',
@@ -77,16 +79,33 @@ class Create extends Component
 
 
         $path = '/pdfBills/bill('.now()->timestamp.').pdf';
-        $bill = Bill::create([
-            'product_detail' => $product_detail_json,
-            'site_type' => $this->siteSelect,
-            'user_id' => Auth::user()->id,
-            'total_price' => $total_price,
-            'site_id' => $this->site_id,
-            'credit' => $total_price,
-            'user_id' => Auth::id(),
-            'pdf_link' => '/storage'.$path
-        ]);
+        if($this->siteSelect == "non_contracted"){
+            $bill = Bill::create([
+                'product_detail' => $product_detail_json,
+                'site_type' => $this->siteSelect,
+                'user_id' => Auth::user()->id,
+                'total_price' => $total_price,
+                'site_id' => $this->site_id,
+                'credit' => $total_price,
+                'user_id' => Auth::id(),
+                'pdf_link' => '/storage'.$path,
+                'description' => $this->description
+            ]);
+        }
+        else{
+            $bill = Bill::create([
+                'product_detail' => $product_detail_json,
+                'site_type' => $this->siteSelect,
+                'user_id' => Auth::user()->id,
+                'total_price' => $total_price,
+                'site_id' => $this->site_id,
+                'debit' => $total_price,
+                'status' => 'paid',
+                'user_id' => Auth::id(),
+                'pdf_link' => '/storage'.$path,
+                'description' => $this->description
+            ]);
+        }
         $all_data = [];
         $all_data = ["product_detail" => $product_detail, "site_name" => $site->name,
         "generation_date" => $bill->created_at, "total_price" => $total_price, "bill_id" => $bill->id, "site" => $site];

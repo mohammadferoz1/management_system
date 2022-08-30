@@ -39,6 +39,12 @@ class Index extends Component
     public function edit($id){
         return redirect()->route('bill.edit', ['id' => $id]);
     }
+    public function delete($id){
+        $bill = Bill::find($id)->delete();
+        session()->flash('message', 'Deleted Successfully');
+        return redirect()->route('bill.index');
+
+    }
     public function makeLedger($id){
         return redirect()->route('bill.makeLedger', ['id' => $id]);
     }
